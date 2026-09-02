@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primary Dice｜スマートフォンアプリの企画・開発</title>
+<meta name="description" content="Primary Dice は、Android アプリを企画から公開まで一人で制作している個人事業です。家計簿アプリ「マネログ」、通貨換算アプリ「KAWASE」、アジア8都市の両替ガイド「レートハント」、拡大鏡アプリ「ミエルーペ」を開発しています。">
+<meta name="theme-color" content="#0e0f10">
+<link rel="canonical" href="https://primarydice.github.io/">
+
+<!-- SNS やチャットに URL を貼ったときのカード表示 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Primary Dice">
+<meta property="og:title" content="Primary Dice｜スマートフォンアプリの企画・開発">
+<meta property="og:description" content="Android アプリを、企画から公開まで一人で制作しています。">
+<meta property="og:url" content="https://primarydice.github.io/">
+<meta property="og:image" content="https://primarydice.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+
+<!-- スクロールで現れる動きを使うかどうかを、描画前に決めておく(点滅を防ぐため) -->
+<script>
+if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.className += ' js-reveal';
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Primary Dice",
+  "url": "https://primarydice.github.io/",
+  "logo": "https://primarydice.github.io/assets/logo.png",
+  "slogan": "Creating the Future",
+  "description": "Android アプリを企画から公開まで一人で制作している個人事業。"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="home" href="/"><img src="/assets/logo.png" alt="Primary Dice" width="879" height="200"></a>
+    <nav class="site-nav" aria-label="サイト内">
+      <a href="#products">Products</a>
+      <a href="#labs">Labs</a>
+      <a href="#company">Company</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== 銘板 ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="plate">
+        <!-- ページの一番大きな見出し(h1)。ロゴ画像そのものが見出しなので、
+             画像の代替テキスト「Primary Dice」がそのまま見出しの文字になります。 -->
+        <!-- ロゴ画像の中に「Creating the Future」が入っているので、
+             板の中に文字を書き足しません。二重になります。 -->
+        <h1 class="plate-logo">
+          <!-- ロゴは2枚に分けてあります。「Creating the Future」だけを
+               あとから浮かび上がらせるためです。読み上げソフトには
+               2枚の代替テキストが続けて読まれ、意味は元のままです。 -->
+          <img class="plate-main" src="/assets/logo-body.png" alt="Primary Dice" width="879" height="200">
+          <img class="plate-tag" src="/assets/logo-tag.png" alt="Creating the Future" width="476" height="39">
+          <!-- 光が Primary の P から Dice の D まで走り、最後に e がピカッと光ります。
+               どちらも装飾なので、読み上げソフトには読ませません(aria-hidden)。 -->
+          <span class="sweep" aria-hidden="true"></span>
+          <span class="glint" aria-hidden="true"></span>
+        </h1>
+      </div>
+      <!-- 理念の一文。英語が主、日本語はその添えです。
+           英字は「磨いた金属」の質感(.polish)で、ロゴと同じ手ざわりにしています。 -->
+      <p class="creed">
+        <!-- 金属の質感(.polish)は1行ずつ掛けます。2行まとめて掛けると
+             グラデーションが上下に割れて、2行目だけ暗くなるためです。 -->
+        <span class="creed-en">
+          <span class="polish">Ideas become innovation.</span>
+          <span class="polish">Innovation changes the world.</span>
+        </span>
+        <span class="creed-rule" aria-hidden="true"></span>
+        <span class="creed-ja">すべての偉大な革新は、一つのアイデアから始まる。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 画像の帯 =====
+       装飾なので alt は空にしています(読み上げソフトは読み飛ばします)。 -->
+  <section class="band is-a">
+    <img class="band-img" src="/assets/hero-a.jpg" alt="" width="1104" height="726">
+  </section>
+
+  <!-- ===== 製品 ===== -->
+  <section class="section" id="products" style="padding-top:0">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">製品</h2>
+      <div class="spec-body">
+        <!-- 画面の上半分に日本語の説明がないと、初見の人に業種が伝わりません。
+             銘板と理念文は英語のままにして、ここで事業の中身を受けています。 -->
+        <!-- 1文目のあとで必ず改行させています。<br> は「ここで行を変える」という印です。
+             画面の幅が狭いときは、2文目がさらに折り返されます(それで正しい動きです)。 -->
+        <p class="dim" style="max-width:30em;margin:0">
+          Android アプリを、企画から公開まで一人で制作しています。<br>
+          4つは作り終えて、Google Play での公開を準備しています。公開しだい、ここからストアへご案内します。
+        </p>
+
+        <div class="rows">
+
+          <a class="row" href="/manelog/">
+            <img class="row-icon" src="/assets/apps/manelog/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <h3 class="row-name">マネログ</h3>
+              <p class="row-desc">レシートを撮る、カード明細の PDF を読み込む。それだけで記録できる家計簿。</p>
+            </div>
+            <span class="row-go">詳細 →</span>
+          </a>
+
+          <a class="row" href="/kawase/">
+            <img class="row-icon" src="/assets/apps/kawase/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <h3 class="row-name">KAWASE</h3>
+              <p class="row-desc">いまのレートで通貨換算。物価のちがいも一緒に分かる。</p>
+            </div>
+            <span class="row-go">詳細 →</span>
+          </a>
+
+          <a class="row" href="/ratehunt/">
+            <img class="row-icon" src="/assets/apps/ratehunt/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <h3 class="row-name">レートハント</h3>
+              <p class="row-desc">アジア8都市の両替を、お店の種類ごとに案内。街ごとに違う「空港での正解」つき。</p>
+            </div>
+            <span class="row-go">詳細 →</span>
+          </a>
+
+          <a class="row" href="/mielupe/">
+            <img class="row-icon" src="/assets/apps/mielupe/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <h3 class="row-name">ミエルーペ</h3>
+              <p class="row-desc">カメラをかざすだけの拡大鏡。止めてゆっくり読める。</p>
+            </div>
+            <span class="row-go">詳細 →</span>
+          </a>
+
+          <!-- トリップキットだけは、まだ作っている途中です。
+               詳細ページを作れるだけの中身が無いので、リンクは張らずに
+               「開発中」の印だけを付けています。完成したら他の4つと同じ形にします。 -->
+          <div class="row row--noicon">
+            <div>
+              <h3 class="row-name">トリップキット</h3>
+              <p class="row-desc">電波が無くても使える、海外旅行の道具箱。換算・翻訳・予算をひとまとめに。</p>
+            </div>
+            <span class="stamp">開発中</span>
+          </div>
+
+          <hr class="incise">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 研究 ===== -->
+  <section class="section" id="labs">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">研究</h2>
+      <div class="spec-body">
+        <p class="dim" style="max-width:30em;margin:0">
+          製品にする前に、技術的に成り立つかを確かめている段階のものです。このまま製品になるとは限りません。
+          ここから製品になったものに、拡大鏡アプリの<a href="/mielupe/">ミエルーペ</a>があります。
+        </p>
+
+        <div class="rows">
+
+          <div class="row row--lab">
+            <div>
+              <h3 class="row-name">積載シミュレーション</h3>
+              <p class="row-desc">トラックの荷台に、どの荷物をどう積むかを計算して 3D で確かめる試作。重さの偏りや積み下ろしの順番を条件に入れられるようにしています。</p>
+            </div>
+            <span class="stamp stamp--lab">試作</span>
+          </div>
+
+          <hr class="incise">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 記録 =====
+       ★公開する前に、内容が古くなっていないか必ず見直してください。
+         更新できない状態が3か月以上続くようなら、このセクションごと削除してください。
+         「更新されていないお知らせ欄」は、無いほうがまだ信用されます。 -->
+  <section class="section" id="news">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">記録</h2>
+      <div class="spec-body">
+        <ul class="log">
+          <li><time class="data" datetime="2026-09-01">2026.09.01</time><span>トリップキットの開発を開始しました。</span></li>
+          <li><time class="data" datetime="2026-08-27">2026.08.27</time><span>レートハントの対応都市をアジア8都市に広げました。</span></li>
+          <li><time class="data" datetime="2026-08-20">2026.08.20</time><span>試作していたメガネアプリを「ミエルーペ」として作り終えました。</span></li>
+          <li><time class="data" datetime="2026-08-18">2026.08.18</time><span>マネログの画面デザインを一新しました。</span></li>
+          <li><time class="data" datetime="2026-08-09">2026.08.09</time><span>レートハントの開発を開始しました。</span></li>
+        </ul>
+        <hr class="incise">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 理念 =====
+       銘板の下にある英字の標語(Ideas become innovation.)は「掲げる一言」、
+       こちらはその中身を日本語で述べたものです。役割が違うので両方置いています。
+       見出しを「理念」にしてあるので、実績の主張ではなく
+       これから目指すことを述べた文として読まれます。 -->
+  <section class="section section--panel" id="philosophy">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">理念</h2>
+      <div class="spec-body">
+        <div class="philosophy">
+          <p>自由な発想と確かな技術で、アイデアを未来の価値へと変え、人々の暮らしと社会をより豊かにします。</p>
+          <p>未来は待つものではなく、自ら創り出すもの。その信念のもと、挑戦を続け、新しい時代を切り拓いていきます。</p>
+        </div>
+        <hr class="incise">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 事業者 ===== -->
+  <section class="section" id="company">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">事業者</h2>
+      <div class="spec-body">
+
+        <!-- ※ 同じ一文を「製品」の導入に移したので、ここからは外しました。
+             1ページの中に同じ文を2回置くと、手を抜いた印象になるためです。
+             すぐ下の「事業内容」の行が同じ役割を果たしています。 -->
+
+        <dl class="info" style="max-width:34em">
+          <dt>屋号</dt>
+          <dd>Primary Dice</dd>
+
+          <dt>事業内容</dt>
+          <dd>スマートフォンアプリケーションの企画・開発・運営</dd>
+
+          <!-- 代表者名や所在地を載せることにした場合は、下の形で行を足してください。
+          <dt>代表者</dt>
+          <dd>お名前</dd>
+          -->
+
+          <dt>連絡先</dt>
+          <dd>
+            <!-- メールアドレスは、迷惑メールを自動で集めるプログラムに拾われにくいよう、
+                 ページを開いたときに JavaScript で組み立てています。
+                 JavaScript が動かない環境でも、下の文字を読めば連絡できます。 -->
+            <span id="mail" data-u="primarydice-develop" data-h="yahoo.co.jp">primarydice-develop［アットマーク］yahoo.co.jp</span>
+          </dd>
+        </dl>
+
+        <p class="small dim" style="margin-top:22px;max-width:30em">
+          お問い合わせは上記のメールアドレスへお願いします。内容によってはお返事にお時間をいただく場合があります。
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="copy">© 2026 Primary Dice</span>
+    <span><a href="/privacy/">プライバシーポリシー</a></span>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

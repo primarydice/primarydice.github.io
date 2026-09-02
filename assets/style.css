@@ -1,0 +1,1044 @@
+/* =========================================================================
+   Primary Dice 公式サイト — 共通スタイル
+
+   デザインの考え方
+   ----------------------------------------------------------------------
+   ロゴは「平面の記号」ではなく、面取りと光沢を持つ金属のバッジです。
+   そこでサイト全体を、機械に取り付けられた「銘板(めいばん)」として扱います。
+
+   ・区切り線は、線を引くのではなく「彫り込む」。
+     暗い線のすぐ下に明るい線を置くと、削られた溝のように見えます。
+   ・和文の見出しは明朝体。日本の製品カタログの作法です。
+   ・光るのは読み込み直後の一度だけ。金属は自分から点滅しません。
+
+   色や余白を変えたいときは、まず下の「設定値」を直してください。
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   設定値(CSS変数)
+   ------------------------------------------------------------------------- */
+:root {
+  /* 色 --------------------------------------------------------------
+     全体にわずかに青みを寄せています。クロム(銀)は暖色ではなく寒色に見えるため。 */
+  --ground:     #0e0f10;  /* 一番下の地。黒染めした金属の色 */
+  --panel:      #16181a;  /* 板の面 */
+  --panel-hi:   #1d2023;  /* 光の当たっている面 */
+  /* 地よりわずかに明るいだけの面。区切りを作りたいときに使います。
+     銘板(--panel)より必ず暗くしてください。ここが銘板と同じ明るさになると、
+     「このページで明るい面はロゴの銘板だけ」という作りが崩れます。 */
+  --panel-low:  #121314;
+  --incise:     #08090a;  /* 彫り込んだ溝の底(暗い側) */
+  --lip:        #363b40;  /* 溝のふち(光が当たる側) */
+  --steel:      #c9ccd0;  /* 本文。背景との明暗差は約12:1 */
+  --steel-dim:  #8b9096;  /* 補助的な文字 */
+  --steel-hi:   #eef0f2;  /* 強調したい文字 */
+
+  /* 差し色 ------------------------------------------------------------
+     ロゴシートにある「ゴールド」から取っています。勝手に決めた色ではありません。
+     触れる・押せる・今ここにいる、を示すときだけに使います。
+     使いすぎるとブランドが崩れるので、面を塗るのには使わないでください。 */
+  --accent:     #c9a227;
+  --accent-dim: #8a7024;
+
+  /* 磨いた金属の質感を文字にかけるためのグラデーション */
+  --polish: linear-gradient(176deg, #ffffff 0%, #d9dce0 38%, #7e848a 56%, #eceef0 100%);
+
+  /* 文字 -------------------------------------------------------------
+     Webフォントは読み込みません(表示が速く、外部に接続しないため)。
+     端末に最初から入っている書体だけを指定しています。 */
+
+  /* 見出し用の明朝体。Windows は游明朝、Mac は ヒラギノ明朝、
+     Android は Noto Serif が当たります。
+     この端末で実測したところ、游明朝が当たり、font-weight:600 では
+     合成の偽物ではなく本物の「游明朝 Demibold」が選ばれることを確認済み。 */
+  --display: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro",
+             "Noto Serif JP", "Noto Serif CJK JP", serif;
+
+  /* 本文用のゴシック体 */
+  --body: system-ui, -apple-system, "Segoe UI", "Noto Sans JP", "Yu Gothic UI",
+          "Hiragino Sans", Meiryo, sans-serif;
+
+  /* 数字・日付・記号など、桁をそろえたいところ */
+  --data: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+  /* 余白・幅 --------------------------------------------------------- */
+  --wrap:      1060px;
+  --gutter:    22px;
+  --section-y: 96px;
+  --rail:      132px;   /* 仕様書レイアウトの左側(項目名)の幅 */
+}
+
+@media (max-width: 760px) {
+  :root { --section-y: 62px; --gutter: 20px; }
+}
+
+/* -------------------------------------------------------------------------
+   土台
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--steel);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--steel-hi); text-decoration-color: var(--lip); text-underline-offset: 4px; }
+a:hover { text-decoration-color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* キーボードだけで操作する人が、毎ページ メニューを通り過ぎずに
+   本文へ飛べるようにするリンク。ふだんは画面の外に隠れていて、
+   Tab キーを押した瞬間だけ左上に現れます。 */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 50;
+  padding: 12px 18px;
+  background: var(--panel-hi);
+  color: var(--steel-hi);
+  border: 1px solid var(--lip);
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.skip-link:focus { top: 12px; }
+@media (prefers-reduced-motion: reduce) { .skip-link { transition: none; } }
+
+/* 指で押す部分は 44px 四方以上にする(スマホでの押し間違いを防ぐため)。
+   文章の途中にあるリンクは対象外です(そこまで広げると行が崩れるため)。
+   1行に単独で置いてあるリンクにだけ、この指定を付けます。 */
+.link-block,
+.list li > a { display: inline-flex; align-items: center; min-height: 44px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); }
+
+/* -------------------------------------------------------------------------
+   彫り込んだ線(このサイトの基本になる形)
+
+   暗い線を1本引き、そのすぐ下に明るい線を置いています。
+   人の目は「上が影・下が光」を、へこんだ溝として認識します。
+   ------------------------------------------------------------------------- */
+.incise {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--incise);
+  box-shadow: 0 1px 0 var(--lip);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   文字
+   ------------------------------------------------------------------------- */
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  margin: 0;
+  color: var(--steel-hi);
+}
+
+/* 日本語の改行を整える
+   ----------------------------------------------------------------------
+   ブラウザは日本語をどこでも改行してよいと考えているので、放っておくと
+   「レシート/を撮る」のように、言葉の途中で行が変わってしまいます。
+
+   ・word-break: auto-phrase … 文節(意味のかたまり)の切れ目で改行する
+   ・line-break: strict      … 小さい「ゃ」「っ」や句読点が行頭に来ないようにする
+
+   auto-phrase に対応していないブラウザでは、これまでどおりの改行になるだけで
+   表示が壊れることはありません。 */
+h1, h2, h3,
+.hero-note, .lead, .creed-ja, .philosophy p,
+.spec-body > p,
+.row-name, .row-desc,
+.features h3, .faq h3, .list li, .log li span {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+/* 磨いた金属の質感。明朝の細い線でも階調が出るよう、角度を浅くしてあります。
+   仕組みは「文字の形に背景を切り抜いて、文字自体は透明にする」というものです。
+   そのため、切り抜き(background-clip: text)が効かないブラウザだと
+   透明な文字だけが残り、文章がまるごと消えてしまいます。
+   下のように囲って、切り抜きが使えるときだけ透明にしています。 */
+.polish { color: var(--steel-hi); }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .polish {
+    background: var(--polish);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+}
+/* Windows のハイコントラストモードでは文字が消えるため、通常の色に戻す */
+@media (forced-colors: active) {
+  .polish { color: CanvasText; background: none; }
+}
+
+p { margin: 0 0 20px; }
+p:last-child { margin-bottom: 0; }
+
+.lead { font-size: clamp(16px, 2.1vw, 18px); line-height: 2.05; }
+.dim  { color: var(--steel-dim); }
+.small { font-size: 14px; }
+
+/* 数字・日付。桁をそろえて表示する */
+.data { font-family: var(--data); font-variant-numeric: tabular-nums; }
+
+/* -------------------------------------------------------------------------
+   ヘッダー
+   ------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 15, 16, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--incise);
+  box-shadow: 0 1px 0 var(--lip);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 60px;
+}
+/* ロゴのリンク。見た目は小さいままだが、押せる範囲は 44px 以上を確保する */
+.site-header .home { display: inline-flex; align-items: center; min-height: 44px; padding-right: 8px; }
+/* ロゴ画像のふちを切り落とした分、見た目の大きさが変わらないよう
+   24px → 14px にしています(旧: 24px の枠の中で絵の高さが 14.1px でした) */
+.site-header img { height: 14px; width: auto; }
+
+.site-nav { display: flex; gap: 8px; font-size: 13px; letter-spacing: 0.14em; }
+.site-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;          /* 指で押せる高さ */
+  padding: 0 10px;           /* 指で押せる幅。項目どうしの間も 8px 空く */
+  color: var(--steel-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+/* 下線は文字のすぐ近くに引く(押せる範囲は広いまま、見た目は締める) */
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 10px; right: 10px; bottom: 12px;
+  height: 1px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.site-nav a:hover, .site-nav a:focus-visible { color: var(--steel-hi); }
+.site-nav a:hover::after, .site-nav a:focus-visible::after { background: var(--accent); }
+
+@media (max-width: 560px) {
+  .site-header img { height: 12px; }   /* 旧 20px。ふちを切り落とした分だけ縮めています */
+  .site-nav { font-size: 12px; letter-spacing: 0.06em; }
+  /* 左右の余白は減らさない。減らすと押せる幅が 44px を割るため */
+}
+
+/* -------------------------------------------------------------------------
+   銘板(トップページの一番上)
+
+   金属の板を1枚、画面に置いています。
+   上のふちに光を、下のふちに影を入れると、板が浮き上がって見えます。
+   ------------------------------------------------------------------------- */
+.hero { padding-block: clamp(44px, 8vw, 92px) 0; }
+
+.plate {
+  position: relative;
+  /* 上下の余白。ロゴ画像はふちを切り落としてあるので、
+     ここの数字がそのまま「板の中でのロゴの位置」になります。
+     切り落とす前に画像自身が持っていた余白のぶんを、ここで足し直しています。
+     下をやや薄くしているのは、そのほうが目には中央に見えるためです
+     (視覚的中央。額縁に絵を掛けるときと同じ考え方) */
+  padding: clamp(56px, 13.8vw, 110px) clamp(24px, 5vw, 60px) clamp(40px, 9vw, 74px);
+  background:
+    /* 髪の毛のように細い縦の筋。ヘアライン仕上げの金属の質感 */
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0 1px, transparent 1px 3px),
+    linear-gradient(178deg, var(--panel-hi) 0%, var(--panel) 46%, #101213 100%);
+  border-top: 1px solid #3b4045;
+  border-bottom: 1px solid #050607;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 26px 70px rgba(0, 0, 0, 0.62);
+}
+
+/* 板の上の両端にある留めネジ。銘板は必ず何かに留められています。
+   ・radial-gradient … 中心から外へ色が変わる塗り。丸い金属の玉に見せます
+   ・linear-gradient … 一方向に色が変わる塗り。マイナスドライバーの溝を描いています
+   ・inset の影 … 内側にできる影。ネジが板にめり込んでいるように見せます */
+.plate::before,
+.plate::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background:
+    /* 斜めの溝(マイナスネジの頭) */
+    linear-gradient(118deg,
+      transparent 0 41%,
+      rgba(0, 0, 0, 0.62) 41% 59%,
+      transparent 59% 100%),
+    /* 上から当たる光 */
+    linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0) 58%),
+    /* 玉の丸み */
+    radial-gradient(circle at 34% 28%, #b3bac1 0%, #767d84 34%, #3a4045 68%, #14171a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.55),   /* ネジの縁の黒い線 */
+    0 1px 1px rgba(255, 255, 255, 0.10),   /* 板に落ちるハイライト */
+    0 2px 5px rgba(0, 0, 0, 0.75);         /* 板に落ちる影 */
+}
+.plate::before { left: 13px; }
+.plate::after  { right: 13px; }
+
+/* ロゴの大きさ。
+   ふちを切り落とす前は「幅 520px の枠の中に、絵が 80.13% の大きさで入っている」
+   状態でした。切り落とした今は絵が枠いっぱいなので、枠のほうを 80.13% に縮めて
+   見た目の大きさを元に戻しています(520 × 0.8013 = 417)。 */
+.plate-logo {
+  position: relative;
+  width: min(417px, 80.13%);
+  margin-inline: auto;
+}
+.plate-logo .plate-main { display: block; width: 100%; }
+
+/* 「Creating the Future」。ロゴ本体から切り離した1枚です。
+   位置と大きさは tools/make-logo.ps1 が実測して出した割合です
+   (元画像 879x200 のうち x=334 y=132 w=476 h=39)。
+   ふだんは opacity:1 にしてあります。万一この動きが動かない環境でも、
+   標語が消えたままにならないようにするためです。 */
+.plate-logo .plate-tag {
+  position: absolute;
+  left: 37.998%;
+  top: 66%;
+  width: 54.152%;
+  height: auto;
+  opacity: 1;
+  animation: tag-appear 1.1s ease-out 1.6s 1 both;
+}
+/* その場に現れます。上下には動かしません。
+   ぼかし(blur)を外しながら出すことで、動かなくても
+   「何もないところから形になる」ように見えます。 */
+@keyframes tag-appear {
+  from { opacity: 0; filter: blur(3px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+/* -------------------------------------------------------------------------
+   「Primary Dice」の最後の e が、ページを開いたとき一度だけ光る演出
+
+   仕組み: ロゴと同じ大きさの透明な板をロゴの上に重ね、
+   　　　　その板に「e の位置を中心にした白い光のにじみ」を描いています。
+   　　　　さらに mask-image でロゴ画像の形に切り抜いているので、
+   　　　　光るのは文字そのものだけ。まわりの余白は光りません。
+
+   e の位置は実測値です(元画像 879x200 の中の x 840〜878 / y 50〜111)。
+   ------------------------------------------------------------------------- */
+/* 光がまず「Primary」の P から「Dice」の D まで走り、
+   そのあと最後の e がピカッと光る、という順番になっています。
+
+   走る光の作り方: 細い光の帯を1本だけ描いて、その帯の位置(background-position)を
+   左から右へ動かしています。板ごと動かすのではなく帯だけを動かすので、
+   切り抜き(mask)はロゴの形に貼りついたまま。だから文字の上だけが光ります。
+
+   位置は実測値です(元画像 879px 幅のうち P は 29.6〜35.3%、D は 78.7〜84.3%。
+   三角のマークは 26% までなので、光はマークには掛かりません)。 */
+.plate-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background-image: linear-gradient(102deg,
+    rgba(255, 255, 255, 0)    0%,
+    rgba(255, 250, 232, 0.55) 34%,
+    rgba(255, 255, 255, 0.98) 50%,
+    rgba(255, 250, 232, 0.55) 66%,
+    rgba(255, 255, 255, 0)    100%);
+  background-size: 15% 100%;      /* 光の帯の幅 */
+  background-repeat: no-repeat;
+  background-position: 26.5% 0;   /* P の左の縦棒から出発 */
+  /* P の左端(29.6%)より左は切り落とします。
+     出はじめの光が左へ半円ではみ出さず、「右半分」だけ見える形になります。
+     光が右へ進んだあとは、この切り取り線に掛からないので影響しません。 */
+  clip-path: inset(0 0 0 29.6%);
+  -webkit-mask-image: url("/assets/logo-body.png");
+          mask-image: url("/assets/logo-body.png");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+@supports ((mask-image: url("/assets/logo-body.png")) or (-webkit-mask-image: url("/assets/logo-body.png"))) {
+  .plate-logo::before {
+    animation: sweep-pd 1.3s ease-in-out 0.25s 1 both;   /* 1回だけ */
+  }
+}
+/* 動きの組み立て(どちらも同じ拍で動きます)
+     0〜8%   … P の左の縦棒のところに、光がふわっとにじみ出る
+     8〜18%  … そこで一瞬とどまる(「残像から始まる」感じを出すため)
+     18〜88% … D に向かって走る
+     88〜100%… 消える
+   切り抜いた帯のほうは縦いっぱいなので、左右にだけ動きます。 */
+@keyframes sweep-pd {
+  0%   { opacity: 0;    background-position: 26.5% 0; }
+  8%   { opacity: 1;    background-position: 26.5% 0; }
+  18%  { opacity: 0.82; background-position: 26.5% 0; }
+  88%  { opacity: 0.82; }
+  100% { opacity: 0;    background-position: 87% 0; }   /* D のところで消える */
+}
+/* にじみのほうは、文字の高さの真ん中を通るように縦位置を固定しています */
+@keyframes sweep-pd-bloom {
+  0%   { opacity: 0;    background-position: 26.5% 28%; }
+  8%   { opacity: 1;    background-position: 26.5% 28%; }
+  18%  { opacity: 0.82; background-position: 26.5% 28%; }
+  88%  { opacity: 0.82; }
+  100% { opacity: 0;    background-position: 87% 28%; }
+}
+
+/* 走る光の「にじみ」。切り抜いていない層です。
+   ロゴの文字はもともと白に近い銀色なので、白を重ねてもほとんど変化しません。
+   光が通り過ぎるのが分かるのは、このにじみがあるからです。
+   縦に細く(高さの30%ぶんだけ)絞ってあるので、板を横切る棒には見えません。 */
+.plate-logo .sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background-image: radial-gradient(
+    ellipse 58% 52% at 50% 50%,
+    rgba(255, 252, 240, 0.30) 0%,
+    rgba(255, 246, 220, 0.11) 45%,
+    rgba(255, 255, 255, 0) 76%
+  );
+  /* 高さを 55% に絞り、縦位置は文字の高さの真ん中に固定しています */
+  background-size: 15% 55%;
+  background-repeat: no-repeat;
+  background-position: 26.5% 28%;
+  clip-path: inset(0 0 0 29.6%);   /* 上と同じ理由。左半分を切り落とします */
+  animation: sweep-pd-bloom 1.3s ease-in-out 0.25s 1 both;
+}
+
+/* 1枚目 — 文字そのものを白く光らせる層(ロゴの形に切り抜いてある) */
+.plate-logo .glint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 4.6% 25% at 97.7% 40.2%,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 250, 236, 0.88) 46%,
+    rgba(255, 255, 255, 0) 86%
+  );
+  -webkit-mask-image: url("/assets/logo-body.png");
+          mask-image: url("/assets/logo-body.png");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+/* mask-image が使えるブラウザでだけ光らせます。
+   使えないと四角い光がそのまま出てしまい、かえって不格好になるためです。 */
+@supports ((mask-image: url("/assets/logo-body.png")) or (-webkit-mask-image: url("/assets/logo-body.png"))) {
+  .plate-logo .glint {
+    animation: glint-e 1.5s ease-out 1.45s 1 both;   /* 1回だけ。繰り返しません */
+  }
+}
+
+/* 2枚目 — 文字のまわりに光がにじむ層(切り抜かない)。
+   これがあると「ピカッ」と光った感じが出ます。1枚目だけだと
+   文字の暗い面が光らないぶん、地味に見えてしまいます。 */
+.plate-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 8.8% 43% at 97.7% 40.2%,
+    rgba(255, 252, 242, 0.48) 0%,
+    rgba(255, 244, 214, 0.19) 42%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  animation: glint-e 1.5s ease-out 1.45s 1 both;
+}
+
+@keyframes glint-e {
+  0%   { opacity: 0;    transform: scale(0.96); }
+  9%   { opacity: 1;    transform: scale(1); }      /* ここが一番明るい */
+  22%  { opacity: 1;    transform: scale(1.005); }  /* 少しだけ明るさを保つ */
+  42%  { opacity: 0.5;  transform: scale(1.015); }
+  100% { opacity: 0;    transform: scale(1.04); }
+}
+
+/* -------------------------------------------------------------------------
+   理念の一文(銘板のすぐ下)
+
+   板が金属、こちらは刻んだ文字、という関係にしています。
+   英字と日本語のあいだに細い金色の線を1本だけ入れて、
+   「銘板に彫った標語」の見え方に寄せました。
+
+   この一文には動きを付けません(ユーザー指示)。板の中の光の演出だけを動かし、
+   文字は最初から彫られている状態で置いておきます。
+   ------------------------------------------------------------------------- */
+/* p.creed と書いているのは、上のほうにある p:last-child { margin-bottom: 0 }
+   に負けないようにするためです(同じ強さで、こちらが後に書いてあるので勝ちます)。 */
+p.creed {
+  margin: clamp(34px, 5.4vw, 58px) auto clamp(28px, 4.2vw, 46px);
+  max-width: 32em;
+  text-align: center;
+  /* 折り返すときに、行の長さがなるべく揃うようにします */
+  text-wrap: balance;
+}
+.creed-en {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(19px, 3.1vw, 30px);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.045em;
+}
+.creed-en .polish { display: block; }
+.creed-rule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin: clamp(18px, 2.6vw, 26px) auto;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.creed-ja {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(13px, 1.9vw, 15px);
+  letter-spacing: 0.14em;
+  line-height: 2.1;
+  color: var(--steel-dim);
+}
+/* 板のすぐ下に置く一文(アプリ詳細ページで使っています) */
+.hero-note {
+  margin: clamp(30px, 5vw, 46px) 0 0;
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-family: var(--display);
+  letter-spacing: 0.08em;
+  line-height: 1.95;
+  color: var(--steel);
+  max-width: 26em;
+}
+
+/* -------------------------------------------------------------------------
+   画像の帯(銘板の下に置く、画面いっぱいの写真)
+
+   ・写真の上下に、地の色へ溶ける暗い膜をかぶせています。
+     こうしないと写真の縁が横一直線に切れて、貼り付けた感じになります。
+   ・動きの速さは linear(等速)にしています。
+     ease-in-out(両端でゆっくりになる指定)にすると、周期の前後が
+     ほぼ静止して「止まっている」ように見えてしまうためです。
+   ・絵によって動かし方を変えています。
+       A 金属  … 横に流す。金色の光が金属の縁をなでていくように見せる
+       B 夜の街 … 斜めにゆっくり寄る
+       C 光の線 … 消失点に向かって寄る。光の中へ進んでいくように見せる
+   ------------------------------------------------------------------------- */
+.band {
+  position: relative;
+  overflow: hidden;
+  background: #0a0b0c;
+  height: clamp(230px, 33vw, 430px);
+}
+.band-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* どれも指定されなかったときの動き(Bと同じ) */
+  animation: band-drift 26s linear infinite alternate;
+}
+
+/* A 金属 — 横に流す */
+.band.is-a .band-img { animation: band-slide 24s linear infinite alternate; }
+@keyframes band-slide {
+  /* 拡大率 1.16 のとき、はみ出しは左右それぞれ画面幅の 8%。
+     横移動は 4.6%×1.16 ≒ 5.3% なので、端が見えることはありません。 */
+  from { transform: scale(1.16) translate3d( 4.6%, -0.5%, 0); }
+  to   { transform: scale(1.16) translate3d(-4.6%,  0.5%, 0); }
+}
+
+/* B 夜の街 — 斜めに寄る */
+.band.is-b .band-img { animation: band-drift 26s linear infinite alternate; }
+@keyframes band-drift {
+  from { transform: scale(1.04) translate3d( 0.8%,  0.6%, 0); }
+  to   { transform: scale(1.15) translate3d(-1.8%, -1.4%, 0); }
+}
+
+/* C 光の線 — 消失点に向かって寄る */
+.band.is-c .band-img { animation: band-zoom 22s linear infinite alternate; }
+@keyframes band-zoom {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to   { transform: scale(1.22) translate3d(0, 0, 0); }
+}
+/* 上下を地の色に溶かす膜 */
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--ground) 0%,
+    rgba(14, 15, 16, 0.45) 22%,
+    rgba(14, 15, 16, 0.30) 55%,
+    rgba(14, 15, 16, 0.92) 92%,
+    var(--ground) 100%
+  );
+}
+
+/* 下位ページの見出し */
+.page-head { padding-block: clamp(44px, 7vw, 78px) 0; }
+
+/* -------------------------------------------------------------------------
+   仕様書レイアウト
+   左に項目名、右に内容。機械の銘板や製品仕様書と同じ並べ方です。
+   ------------------------------------------------------------------------- */
+.spec {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  column-gap: 44px;
+}
+@media (max-width: 760px) {
+  .spec { grid-template-columns: 1fr; row-gap: 18px; }
+}
+
+/* 左側の項目名。頭に短い金の線を1本置いて、区切りを分かりやすくする */
+.spec-label {
+  position: relative;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  line-height: 2;
+  color: var(--steel-dim);
+  padding-top: 4px;
+  padding-left: 20px;
+}
+.spec-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.1em;
+  width: 12px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.spec-body > :first-child { margin-top: 0; }
+
+/* 大きい見出し(仕様書の中の表題) */
+.headline {
+  font-size: clamp(22px, 3.2vw, 30px);
+  letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+
+/* -------------------------------------------------------------------------
+   製品の行
+   カードを並べるのではなく、仕様書のように1行ずつ積みます。
+   ------------------------------------------------------------------------- */
+.rows { margin-top: 34px; }
+
+.row {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  column-gap: 22px;
+  padding: 26px 4px;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip);
+  transition: background 0.3s ease;
+}
+/* 触れると、板の表面を光がなでるように見せる */
+a.row:hover, a.row:focus-visible {
+  background: linear-gradient(96deg, rgba(255,255,255,0.045), rgba(255,255,255,0) 72%);
+}
+.rows > .incise:last-child { display: block; }
+
+.row-icon { width: 54px; height: 54px; border-radius: 12px; }
+
+.row-name {
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+/* 1行が長すぎると目が戻りにくくなるので、40文字前後で折り返す */
+.row-desc { margin: 0; font-size: 15px; line-height: 1.8; color: var(--steel-dim); max-width: 40em; }
+.row-go {
+  font-family: var(--data);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--steel-dim);
+  white-space: nowrap;
+}
+a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
+
+@media (max-width: 620px) {
+  .row { grid-template-columns: 44px 1fr; row-gap: 12px; }
+  .row-icon { width: 44px; height: 44px; }
+  .row-go { grid-column: 2; }
+}
+
+/* アイコンをまだ持っていない製品の行。
+   .row は「アイコン・本文・右端」の3列でできているので、アイコンの画像を
+   置かないと本文が54pxの細い列に押し込まれて崩れます。
+   その場合はこのクラスを足すと、アイコンの列を空けたまま、本文が2列目から
+   始まります。ほかの行と文字の左端がそろいます。
+   (格を落とす .row--lab とは別物です。こちらは文字の大きさも色も製品のままです) */
+.row--noicon > div  { grid-column: 2; }
+.row--noicon > .stamp { grid-column: 3; }
+@media (max-width: 620px) {
+  /* 狭い画面では2列しかないので、印は次の行の左端に置きます */
+  .row--noicon > .stamp { grid-column: 2; justify-self: start; }
+}
+
+/* 研究段階のものは、製品より一段引いて置く */
+.row--lab { grid-template-columns: 1fr auto; padding: 22px 4px; }
+.row--lab .row-name { font-size: 17px; color: var(--steel); }
+@media (max-width: 620px) {
+  .row--lab { grid-template-columns: 1fr; }
+  .row--lab .stamp { justify-self: start; }
+}
+
+/* -------------------------------------------------------------------------
+   刻印(状態の表示)
+   検査済みの印のように、板に押された跡として見せます。
+   ------------------------------------------------------------------------- */
+.stamp {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  color: var(--accent);
+  background: #101214;
+  border: 1px solid var(--accent-dim);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.5);
+  padding: 6px 13px;
+  white-space: nowrap;
+}
+.stamp--lab { border-style: dashed; }
+
+/* -------------------------------------------------------------------------
+   ボタン
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--steel-hi);
+  background: linear-gradient(180deg, var(--panel-hi), var(--panel));
+  border-top: 1px solid var(--lip);
+  border-bottom: 1px solid var(--incise);
+  border-left: 1px solid #202427;
+  border-right: 1px solid #202427;
+  padding: 14px 30px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.btn:hover, .btn:focus-visible {
+  background: linear-gradient(180deg, #23272b, #1a1d1f);
+  border-top-color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   スマートフォンの枠
+   画像編集はせず、CSSで枠を描いています。
+   ------------------------------------------------------------------------- */
+.phones {
+  display: flex;
+  gap: clamp(16px, 3vw, 32px);
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.phone {
+  width: clamp(152px, 25vw, 224px);
+  border: 7px solid #202427;
+  border-radius: 24px;
+  background: #000;
+  overflow: hidden;
+  box-shadow: 0 20px 46px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.04);
+  position: relative;
+}
+.phone::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 36%;
+  height: 11px;
+  background: #202427;
+  border-radius: 0 0 8px 8px;
+  z-index: 2;
+}
+/* 画面写真によって縦横の比率が少し違う(1080/1170 など)ので、
+   枠の中では同じ比率にそろえます。はみ出した分は下側が切れます。 */
+.phone img {
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* 狭い画面では3枚が1行に収まらず、3枚目だけが下に落ちて不格好になる。
+   横に並べたまま、指でスワイプして見られるようにする。 */
+@media (max-width: 760px) {
+  .phones {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--lip) transparent;
+  }
+  .phones .phone { flex: 0 0 auto; scroll-snap-align: center; }
+}
+
+/* アプリ詳細ページのスクリーンショット。常に横スクロール */
+.shots {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lip) transparent;
+}
+.shots .phone { flex: 0 0 auto; scroll-snap-align: center; width: clamp(178px, 44vw, 224px); }
+.shots::-webkit-scrollbar, .phones::-webkit-scrollbar { height: 7px; }
+.shots::-webkit-scrollbar-thumb, .phones::-webkit-scrollbar-thumb { background: var(--lip); }
+.shots::-webkit-scrollbar-track, .phones::-webkit-scrollbar-track { background: var(--incise); }
+
+/* -------------------------------------------------------------------------
+   アプリ詳細ページの見出し
+   ------------------------------------------------------------------------- */
+.app-head { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+.app-head img { width: 72px; height: 72px; border-radius: 16px; }
+.app-head h1 { font-size: clamp(26px, 4.6vw, 38px); letter-spacing: 0.1em; }
+
+/* -------------------------------------------------------------------------
+   箇条書き・履歴・定義リスト
+   ------------------------------------------------------------------------- */
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 15px; }
+.list li { position: relative; padding-left: 22px; }
+/* 行頭は点ではなく、彫った短い横線 */
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.95em;
+  width: 11px;
+  height: 1px;
+  background: var(--lip);
+}
+
+.log { list-style: none; margin: 0; padding: 0; }
+.log li {
+  display: flex;
+  gap: 22px;
+  padding: 14px 4px;
+  border-top: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip);
+  font-size: 15px;
+  flex-wrap: wrap;
+}
+.log time {
+  font-family: var(--data);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--steel-dim);
+  flex: 0 0 auto;
+  min-width: 94px;
+}
+
+/* -------------------------------------------------------------------------
+   理念(経営理念)
+
+   板の下にある英字の標語(.creed)とは別物です。名前が似ていて紛らわしいので、
+   こちらは philosophy、あちらは creed と、はっきり分けて付けています。
+
+   和文の長い文なので、本文より少しだけ大きく、行の間隔を広く取っています。
+   1行がおよそ30文字で折り返すようにしてあります(これ以上長いと目が戻る位置を
+   見失いやすく、これ以下だと文が細切れに見えます)。
+   ------------------------------------------------------------------------- */
+/* 理念のセクションだけ、地よりわずかに明るい面にします。
+   上下は、このサイトの基本の形である「彫り込んだ線」で区切っています
+   (暗い線のすぐ内側に明るい線 = --lip を置くと、削られた溝に見えます)。
+   この面を他の場所にも増やすと縞模様になってうるさくなるので、
+   ページの中で1か所だけにしてください。 */
+.section--panel {
+  background: var(--panel-low);
+  border-top: 1px solid var(--incise);
+  border-bottom: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip), inset 0 -1px 0 rgba(0, 0, 0, 0.55);
+}
+
+.philosophy {
+  margin-bottom: 34px;
+}
+.philosophy p {
+  /* 30em は「この文字サイズで約30文字」という意味です。
+     幅の指定は p(19px)側に書きます。囲みの div は 16px なので、
+     そちらに書くと 30文字ぶんより狭くなってしまいます。 */
+  max-width: 30em;
+  font-family: var(--display);   /* 見出しと同じ明朝体。掲げる文なので本文体にしない */
+  font-size: clamp(16px, 2.1vw, 19px);
+  line-height: 2.05;
+  letter-spacing: 0.06em;
+  color: var(--steel);
+  margin: 0;
+}
+/* 2つ目の段落(「未来は待つものではなく〜」)との間だけ、1行ぶん空けます */
+.philosophy p + p { margin-top: 1.4em; }
+
+.info { margin: 0; display: grid; grid-template-columns: 116px 1fr; }
+.info dt, .info dd {
+  margin: 0;
+  padding: 15px 2px;
+  border-top: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip);
+}
+.info dt { font-size: 13px; letter-spacing: 0.16em; color: var(--steel-dim); }
+/* メールのリンクも、指で押せる高さを確保する */
+#mail a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 560px) {
+  .info { grid-template-columns: 1fr; }
+  .info dt { padding-bottom: 0; box-shadow: inset 0 1px 0 var(--lip); }
+  .info dd { padding-top: 4px; border-top: 0; box-shadow: none; }
+}
+
+/* 機能の説明を並べるところ */
+.features {
+  display: grid;
+  gap: 34px 44px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 32px;
+}
+.features h3 { font-size: 17px; letter-spacing: 0.08em; margin-bottom: 8px; }
+.features p { font-size: 15px; line-height: 1.85; color: var(--steel-dim); margin: 0; }
+
+/* 質問と答え */
+.faq { display: grid; gap: 24px; margin-top: 30px; }
+.faq h3 { font-size: 16px; letter-spacing: 0.06em; margin-bottom: 6px; }
+.faq p { margin: 0; font-size: 15px; color: var(--steel-dim); }
+
+/* 注意書き。板を一段掘り下げた凹み */
+.note {
+  background: #101214;
+  border-top: 1px solid var(--incise);
+  border-bottom: 1px solid #24282b;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+  padding: 20px 22px;
+  font-size: 15px;
+}
+.note :last-child { margin-bottom: 0; }
+
+/* -------------------------------------------------------------------------
+   フッター
+   ------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip);
+  padding-block: 36px;
+  margin-top: 46px;
+  font-size: 14px;
+  color: var(--steel-dim);
+}
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.site-footer a {
+  color: var(--steel-dim);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;   /* 指で押せる高さ */
+}
+.site-footer a:hover { color: var(--steel-hi); }
+.site-footer .copy { font-family: var(--data); font-size: 12px; letter-spacing: 0.08em; }
+
+/* -------------------------------------------------------------------------
+   スクロールしたときに、静かに1回だけ現れる
+   ------------------------------------------------------------------------- */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  /* 安全網: 万一 site.js が読み込めなかった場合でも6秒後には必ず表示する。
+     site.js が動いた場合は js-reveal-ok が付き、この安全網は止まります。 */
+  animation: reveal-failsafe 0.8s ease 6s forwards;
+}
+.js-reveal-ok .reveal { animation: none; }
+.js-reveal .reveal.is-visible { animation: none; opacity: 1; transform: none; }
+@keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
+
+/* 「視差効果を減らす」設定の人には、動きを一切見せない */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* .band.is-a .band-img などの指定に負けないよう、同じ強さで打ち消します */
+  .band .band-img,
+  .band.is-a .band-img,
+  .band.is-b .band-img,
+  .band.is-c .band-img { animation: none; transform: scale(1.04); }
+  .js-reveal .reveal { opacity: 1; transform: none; transition: none; animation: none; }
+  .plate-logo::before,
+  .plate-logo .sweep,
+  .plate-logo .glint,
+  .plate-logo::after { animation: none; opacity: 0; }
+  /* 標語は動かさずに、最初から出しておきます
+     (理念の一文はもともと動かさないので、ここに書く必要がありません) */
+  .plate-logo .plate-tag { animation: none; opacity: 1; filter: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* -------------------------------------------------------------------------
+   目には見えないが、読み上げソフトには伝わる文字
+   ------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

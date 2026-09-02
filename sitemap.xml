@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  サイトマップ: このサイトにどんなページがあるかを検索エンジンに伝える一覧です。
+  ページを増やしたときは、ここにも <url> の固まりを足してください。
+  <lastmod> はそのページを最後に更新した日です。公開時とページ更新時に書き換えます。
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://primarydice.github.io/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/manelog/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/kawase/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/ratehunt/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/mielupe/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/privacy/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

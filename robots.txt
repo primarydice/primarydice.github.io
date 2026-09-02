@@ -1,0 +1,8 @@
+# robots.txt
+# 検索エンジンのプログラム(クローラー)に対して、
+# 「どこを読んでよいか」「サイトマップはどこか」を伝えるファイルです。
+
+User-agent: *
+Allow: /
+
+Sitemap: https://primarydice.github.io/sitemap.xml
