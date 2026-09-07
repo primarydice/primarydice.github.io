@@ -349,153 +349,16 @@ p:last-child { margin-bottom: 0; }
   to   { opacity: 1; filter: blur(0); }
 }
 
-/* -------------------------------------------------------------------------
-   「Primary Dice」の最後の e が、ページを開いたとき一度だけ光る演出
+/* ロゴの上を光が走る演出は入れません(ユーザー指示・2026-09-07 削除)。
 
-   仕組み: ロゴと同じ大きさの透明な板をロゴの上に重ね、
-   　　　　その板に「e の位置を中心にした白い光のにじみ」を描いています。
-   　　　　さらに mask-image でロゴ画像の形に切り抜いているので、
-   　　　　光るのは文字そのものだけ。まわりの余白は光りません。
+   以前は「光が Primary の P から Dice の D まで走り、最後に e がピカッと光る」
+   という2段の演出が入っていました。板の中で動くものは無くし、
+   銘板は最初から彫られている状態で置いておきます。
 
-   e の位置は実測値です(元画像 879x200 の中の x 840〜878 / y 50〜111)。
-   ------------------------------------------------------------------------- */
-/* 光がまず「Primary」の P から「Dice」の D まで走り、
-   そのあと最後の e がピカッと光る、という順番になっています。
+   ★戻したくなった場合は、コミット 93b7621 の時点の style.css と index.html に
+     .plate-logo::before / .sweep / .glint / .plate-logo::after と
+     @keyframes sweep-pd / sweep-pd-bloom / glint-e が残っています。 */
 
-   走る光の作り方: 細い光の帯を1本だけ描いて、その帯の位置(background-position)を
-   左から右へ動かしています。板ごと動かすのではなく帯だけを動かすので、
-   切り抜き(mask)はロゴの形に貼りついたまま。だから文字の上だけが光ります。
-
-   位置は実測値です(元画像 879px 幅のうち P は 29.6〜35.3%、D は 78.7〜84.3%。
-   三角のマークは 26% までなので、光はマークには掛かりません)。 */
-.plate-logo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background-image: linear-gradient(102deg,
-    rgba(255, 255, 255, 0)    0%,
-    rgba(255, 250, 232, 0.55) 34%,
-    rgba(255, 255, 255, 0.98) 50%,
-    rgba(255, 250, 232, 0.55) 66%,
-    rgba(255, 255, 255, 0)    100%);
-  background-size: 15% 100%;      /* 光の帯の幅 */
-  background-repeat: no-repeat;
-  background-position: 26.5% 0;   /* P の左の縦棒から出発 */
-  /* P の左端(29.6%)より左は切り落とします。
-     出はじめの光が左へ半円ではみ出さず、「右半分」だけ見える形になります。
-     光が右へ進んだあとは、この切り取り線に掛からないので影響しません。 */
-  clip-path: inset(0 0 0 29.6%);
-  -webkit-mask-image: url("/assets/logo-body.png");
-          mask-image: url("/assets/logo-body.png");
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-}
-@supports ((mask-image: url("/assets/logo-body.png")) or (-webkit-mask-image: url("/assets/logo-body.png"))) {
-  .plate-logo::before {
-    animation: sweep-pd 1.3s ease-in-out 0.25s 1 both;   /* 1回だけ */
-  }
-}
-/* 動きの組み立て(どちらも同じ拍で動きます)
-     0〜8%   … P の左の縦棒のところに、光がふわっとにじみ出る
-     8〜18%  … そこで一瞬とどまる(「残像から始まる」感じを出すため)
-     18〜88% … D に向かって走る
-     88〜100%… 消える
-   切り抜いた帯のほうは縦いっぱいなので、左右にだけ動きます。 */
-@keyframes sweep-pd {
-  0%   { opacity: 0;    background-position: 26.5% 0; }
-  8%   { opacity: 1;    background-position: 26.5% 0; }
-  18%  { opacity: 0.82; background-position: 26.5% 0; }
-  88%  { opacity: 0.82; }
-  100% { opacity: 0;    background-position: 87% 0; }   /* D のところで消える */
-}
-/* にじみのほうは、文字の高さの真ん中を通るように縦位置を固定しています */
-@keyframes sweep-pd-bloom {
-  0%   { opacity: 0;    background-position: 26.5% 28%; }
-  8%   { opacity: 1;    background-position: 26.5% 28%; }
-  18%  { opacity: 0.82; background-position: 26.5% 28%; }
-  88%  { opacity: 0.82; }
-  100% { opacity: 0;    background-position: 87% 28%; }
-}
-
-/* 走る光の「にじみ」。切り抜いていない層です。
-   ロゴの文字はもともと白に近い銀色なので、白を重ねてもほとんど変化しません。
-   光が通り過ぎるのが分かるのは、このにじみがあるからです。
-   縦に細く(高さの30%ぶんだけ)絞ってあるので、板を横切る棒には見えません。 */
-.plate-logo .sweep {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background-image: radial-gradient(
-    ellipse 58% 52% at 50% 50%,
-    rgba(255, 252, 240, 0.30) 0%,
-    rgba(255, 246, 220, 0.11) 45%,
-    rgba(255, 255, 255, 0) 76%
-  );
-  /* 高さを 55% に絞り、縦位置は文字の高さの真ん中に固定しています */
-  background-size: 15% 55%;
-  background-repeat: no-repeat;
-  background-position: 26.5% 28%;
-  clip-path: inset(0 0 0 29.6%);   /* 上と同じ理由。左半分を切り落とします */
-  animation: sweep-pd-bloom 1.3s ease-in-out 0.25s 1 both;
-}
-
-/* 1枚目 — 文字そのものを白く光らせる層(ロゴの形に切り抜いてある) */
-.plate-logo .glint {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    ellipse 4.6% 25% at 97.7% 40.2%,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 250, 236, 0.88) 46%,
-    rgba(255, 255, 255, 0) 86%
-  );
-  -webkit-mask-image: url("/assets/logo-body.png");
-          mask-image: url("/assets/logo-body.png");
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-}
-/* mask-image が使えるブラウザでだけ光らせます。
-   使えないと四角い光がそのまま出てしまい、かえって不格好になるためです。 */
-@supports ((mask-image: url("/assets/logo-body.png")) or (-webkit-mask-image: url("/assets/logo-body.png"))) {
-  .plate-logo .glint {
-    animation: glint-e 1.5s ease-out 1.45s 1 both;   /* 1回だけ。繰り返しません */
-  }
-}
-
-/* 2枚目 — 文字のまわりに光がにじむ層(切り抜かない)。
-   これがあると「ピカッ」と光った感じが出ます。1枚目だけだと
-   文字の暗い面が光らないぶん、地味に見えてしまいます。 */
-.plate-logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    ellipse 8.8% 43% at 97.7% 40.2%,
-    rgba(255, 252, 242, 0.48) 0%,
-    rgba(255, 244, 214, 0.19) 42%,
-    rgba(255, 255, 255, 0) 80%
-  );
-  animation: glint-e 1.5s ease-out 1.45s 1 both;
-}
-
-@keyframes glint-e {
-  0%   { opacity: 0;    transform: scale(0.96); }
-  9%   { opacity: 1;    transform: scale(1); }      /* ここが一番明るい */
-  22%  { opacity: 1;    transform: scale(1.005); }  /* 少しだけ明るさを保つ */
-  42%  { opacity: 0.5;  transform: scale(1.015); }
-  100% { opacity: 0;    transform: scale(1.04); }
-}
 
 /* -------------------------------------------------------------------------
    理念の一文(銘板のすぐ下)
@@ -1020,10 +883,6 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   .band.is-b .band-img,
   .band.is-c .band-img { animation: none; transform: scale(1.04); }
   .js-reveal .reveal { opacity: 1; transform: none; transition: none; animation: none; }
-  .plate-logo::before,
-  .plate-logo .sweep,
-  .plate-logo .glint,
-  .plate-logo::after { animation: none; opacity: 0; }
   /* 標語は動かさずに、最初から出しておきます
      (理念の一文はもともと動かさないので、ここに書く必要がありません) */
   .plate-logo .plate-tag { animation: none; opacity: 1; filter: none; }
