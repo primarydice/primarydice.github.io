@@ -704,6 +704,19 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   scrollbar-color: var(--lip) transparent;
 }
 .shots .phone { flex: 0 0 auto; scroll-snap-align: center; width: clamp(178px, 44vw, 224px); }
+
+/* 見出し文と飾り罫が最初から描き込まれている1枚絵(ストア用の宣伝画像)を
+   並べるための入れ物です。絵の中にすでにスマホの枠が描かれているので、
+   .phone のような枠は重ねません。縦横の比率もそのまま、切らずに出します。 */
+.shots .card {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: clamp(206px, 54vw, 276px);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.shots .card img { display: block; width: 100%; height: auto; }
 .shots::-webkit-scrollbar, .phones::-webkit-scrollbar { height: 7px; }
 .shots::-webkit-scrollbar-thumb, .phones::-webkit-scrollbar-thumb { background: var(--lip); }
 .shots::-webkit-scrollbar-track, .phones::-webkit-scrollbar-track { background: var(--incise); }

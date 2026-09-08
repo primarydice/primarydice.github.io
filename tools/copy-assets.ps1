@@ -26,7 +26,10 @@ $apps = @(
         name = 'kawase'
         icon = 'かわせるん\store-assets\store-icon-512.png'
         dir  = 'かわせるん\store-assets\screenshots'
-        shots = @('01-換算画面.png','02-単価計算.png','03-物価くらべ.png')
+        # 2026-09-08 差し替え。ストア用に作り直した縦1920の宣伝画像です。
+        # 画面写真そのものではなく、見出し文と飾り罫が入った1枚絵なので、
+        # サイト側ではスマホの枠を重ねずにそのまま並べます(kawase/index.html 参照)。
+        shots = @('01-換算画面_1080x1920.png','02-単価から合計_1080x1920.png','03-物価くらべ_1080x1920.png')
     },
     @{
         name = 'ratehunt'

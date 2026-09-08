@@ -72,9 +72,12 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
   <section class="section">
     <div class="wrap reveal">
       <div class="shots">
-        <div class="phone"><img src="/assets/apps/kawase/shot-01.jpg" alt="大きな電卓キーで金額を入れて通貨換算している画面" width="540" height="1170" loading="lazy"></div>
-        <div class="phone"><img src="/assets/apps/kawase/shot-02.png" alt="単価と個数から合計を計算している画面" width="540" height="1170" loading="lazy"></div>
-        <div class="phone"><img src="/assets/apps/kawase/shot-03.jpg" alt="現地の物価を日本と並べて比べている画面" width="540" height="1170" loading="lazy"></div>
+        <!-- この3枚は画面写真そのものではなく、見出し文と飾り罫が入った1枚絵です。
+             絵の中にスマホの枠が描き込まれているので、.phone(枠を重ねる入れ物)ではなく
+             .card(枠を重ねない入れ物)を使っています。 -->
+        <div class="card"><img src="/assets/apps/kawase/shot-01.jpg" alt="「これ、日本円でいくら?」の見出しと、10,000 USD を日本円に換算している画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/kawase/shot-02.png" alt="「単価 × 個数をまとめて換算」の見出しと、単価と個数から合計を計算している画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/kawase/shot-03.jpg" alt="「安いのか高いのか物価で分かる」の見出しと、現地の物価を日本と並べて比べている画面" width="540" height="960" loading="lazy"></div>
       </div>
       <p class="small dim" style="margin-top:12px">横にスワイプすると、ほかの画面も見られます</p>
     </div>
