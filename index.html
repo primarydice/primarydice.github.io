@@ -95,9 +95,12 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
   </section>
 
   <!-- ===== 画像の帯 =====
-       装飾なので alt は空にしています(読み上げソフトは読み飛ばします)。 -->
+       装飾なので alt は空にしています(読み上げソフトは読み飛ばします)。
+       2026-09-12 に金属の画像(hero-a.jpg)から、光る基盤の画像に替えました。
+       光の色がオレンジ〜金なので、見出しの金の線とそろいます。
+       青い光の画像は、サイトの中でそこだけ色が浮くので使っていません。 -->
   <section class="band is-a">
-    <img class="band-img" src="/assets/hero-a.jpg" alt="" width="1104" height="726">
+    <img class="band-img" src="/assets/hero-circuit.jpg" alt="" width="1920" height="1079">
   </section>
 
   <!-- ===== 製品 ===== -->
@@ -243,6 +246,10 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
              1ページの中に同じ文を2回置くと、手を抜いた印象になるためです。
              すぐ下の「事業内容」の行が同じ役割を果たしています。 -->
 
+        <!-- 左に事業者の情報、右にキャラクター。キャラクターは左に手を差し出しているので、
+             右に置くと連絡先を指し示す形になります。スマホでは下に回ります。 -->
+        <div class="company">
+        <div>
         <dl class="info" style="max-width:34em">
           <dt>屋号</dt>
           <dd>Primary Dice</dd>
@@ -267,6 +274,14 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
         <p class="small dim" style="margin-top:22px;max-width:30em">
           お問い合わせは上記のメールアドレスへお願いします。内容によってはお返事にお時間をいただく場合があります。
         </p>
+        </div>
+
+        <!-- 元の絵(キャラ.png)は右半分にロゴが入っているので、キャラクターの部分だけを切り出しています。
+             ロゴはページの一番上にあるので、ここに入れると二重になります。 -->
+        <figure class="mascot">
+          <img src="/assets/chara.jpg" alt="Primary Dice のキャラクター。サイコロの頭をしたロボットが、手を差し出している" width="616" height="880" loading="lazy">
+        </figure>
+        </div>
 
       </div>
     </div>
