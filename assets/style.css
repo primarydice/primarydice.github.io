@@ -19,29 +19,31 @@
    ------------------------------------------------------------------------- */
 :root {
   /* 色 --------------------------------------------------------------
-     全体にわずかに青みを寄せています。クロム(銀)は暖色ではなく寒色に見えるため。 */
-  --ground:     #0e0f10;  /* 一番下の地。黒染めした金属の色 */
-  --panel:      #16181a;  /* 板の面 */
-  --panel-hi:   #1d2023;  /* 光の当たっている面 */
+     2026-09-12 に全体を青系(濃い紺の地・電気の青の差し色)に作り直しました。
+     基盤に電気が走る画像・動画と、キャラクターの青い光に合わせています。
+     それまでは黒に近い灰色の地と金色の差し色でした。 */
+  --ground:     #070b14;  /* 一番下の地。黒染めした金属の色 */
+  --panel:      #0d1524;  /* 板の面 */
+  --panel-hi:   #13203a;  /* 光の当たっている面 */
   /* 地よりわずかに明るいだけの面。区切りを作りたいときに使います。
      銘板(--panel)より必ず暗くしてください。ここが銘板と同じ明るさになると、
      「このページで明るい面はロゴの銘板だけ」という作りが崩れます。 */
-  --panel-low:  #121314;
-  --incise:     #08090a;  /* 彫り込んだ溝の底(暗い側) */
-  --lip:        #363b40;  /* 溝のふち(光が当たる側) */
-  --steel:      #c9ccd0;  /* 本文。背景との明暗差は約12:1 */
-  --steel-dim:  #8b9096;  /* 補助的な文字 */
-  --steel-hi:   #eef0f2;  /* 強調したい文字 */
+  --panel-low:  #0a1020;
+  --incise:     #03060d;  /* 彫り込んだ溝の底(暗い側) */
+  --lip:        #22324f;  /* 溝のふち(光が当たる側) */
+  --steel:      #c6d3e8;  /* 本文。背景との明暗差は約12:1 */
+  --steel-dim:  #8497b5;  /* 補助的な文字 */
+  --steel-hi:   #eef4ff;  /* 強調したい文字 */
 
   /* 差し色 ------------------------------------------------------------
-     ロゴシートにある「ゴールド」から取っています。勝手に決めた色ではありません。
+     電気の青。帯の動画や画像の光の色から取っています。
      触れる・押せる・今ここにいる、を示すときだけに使います。
      使いすぎるとブランドが崩れるので、面を塗るのには使わないでください。 */
-  --accent:     #c9a227;
-  --accent-dim: #8a7024;
+  --accent:     #4c9dff;
+  --accent-dim: #2c5fa8;
 
   /* 磨いた金属の質感を文字にかけるためのグラデーション */
-  --polish: linear-gradient(176deg, #ffffff 0%, #d9dce0 38%, #7e848a 56%, #eceef0 100%);
+  --polish: linear-gradient(176deg, #ffffff 0%, #d3e2ff 38%, #6d86ad 56%, #e9f1ff 100%);
 
   /* 文字 -------------------------------------------------------------
      Webフォントは読み込みません(表示が速く、外部に接続しないため)。
@@ -212,7 +214,7 @@ p:last-child { margin-bottom: 0; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(14, 15, 16, 0.9);
+  background: rgba(7, 11, 20, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--incise);
   box-shadow: 0 1px 0 var(--lip);
@@ -278,9 +280,9 @@ p:last-child { margin-bottom: 0; }
   background:
     /* 髪の毛のように細い縦の筋。ヘアライン仕上げの金属の質感 */
     repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0 1px, transparent 1px 3px),
-    linear-gradient(178deg, var(--panel-hi) 0%, var(--panel) 46%, #101213 100%);
-  border-top: 1px solid #3b4045;
-  border-bottom: 1px solid #050607;
+    linear-gradient(178deg, var(--panel-hi) 0%, var(--panel) 46%, #0b1322 100%);
+  border-top: 1px solid #2a3b5a;
+  border-bottom: 1px solid #02040a;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.055),
     0 26px 70px rgba(0, 0, 0, 0.62);
@@ -307,7 +309,7 @@ p:last-child { margin-bottom: 0; }
     /* 上から当たる光 */
     linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0) 58%),
     /* 玉の丸み */
-    radial-gradient(circle at 34% 28%, #b3bac1 0%, #767d84 34%, #3a4045 68%, #14171a 100%);
+    radial-gradient(circle at 34% 28%, #b8c6da 0%, #6f7f98 34%, #34425a 68%, #0f1626 100%);
   box-shadow:
     inset 0 0 0 1px rgba(0, 0, 0, 0.55),   /* ネジの縁の黒い線 */
     0 1px 1px rgba(255, 255, 255, 0.10),   /* 板に落ちるハイライト */
@@ -358,7 +360,6 @@ p:last-child { margin-bottom: 0; }
    ★戻したくなった場合は、コミット 93b7621 の時点の style.css と index.html に
      .plate-logo::before / .sweep / .glint / .plate-logo::after と
      @keyframes sweep-pd / sweep-pd-bloom / glint-e が残っています。 */
-
 
 /* -------------------------------------------------------------------------
    理念の一文(銘板のすぐ下)
@@ -430,7 +431,7 @@ p.creed {
 .band {
   position: relative;
   overflow: hidden;
-  background: #0a0b0c;
+  background: #050912;
   height: clamp(230px, 33vw, 430px);
 }
 .band-img {
@@ -475,9 +476,9 @@ p.creed {
   background: linear-gradient(
     180deg,
     var(--ground) 0%,
-    rgba(14, 15, 16, 0.45) 22%,
-    rgba(14, 15, 16, 0.30) 55%,
-    rgba(14, 15, 16, 0.92) 92%,
+    rgba(7, 11, 20, 0.45) 22%,
+    rgba(7, 11, 20, 0.30) 55%,
+    rgba(7, 11, 20, 0.92) 92%,
     var(--ground) 100%
   );
 }
@@ -637,7 +638,7 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   letter-spacing: 0.22em;
   text-indent: 0.22em;
   color: var(--accent);
-  background: #101214;
+  background: #0b1220;
   border: 1px solid var(--accent-dim);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.5);
   padding: 6px 13px;
@@ -657,13 +658,13 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   background: linear-gradient(180deg, var(--panel-hi), var(--panel));
   border-top: 1px solid var(--lip);
   border-bottom: 1px solid var(--incise);
-  border-left: 1px solid #202427;
-  border-right: 1px solid #202427;
+  border-left: 1px solid #18243a;
+  border-right: 1px solid #18243a;
   padding: 14px 30px;
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 .btn:hover, .btn:focus-visible {
-  background: linear-gradient(180deg, #23272b, #1a1d1f);
+  background: linear-gradient(180deg, #1a2842, #111a2d);
   border-top-color: var(--accent);
 }
 
@@ -680,7 +681,7 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
 }
 .phone {
   width: clamp(152px, 25vw, 224px);
-  border: 7px solid #202427;
+  border: 7px solid #18243a;
   border-radius: 24px;
   background: #000;
   overflow: hidden;
@@ -694,7 +695,7 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   transform: translateX(-50%);
   width: 36%;
   height: 11px;
-  background: #202427;
+  background: #18243a;
   border-radius: 0 0 8px 8px;
   z-index: 2;
 }
@@ -865,9 +866,9 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
 
 /* 注意書き。板を一段掘り下げた凹み */
 .note {
-  background: #101214;
+  background: #0b1220;
   border-top: 1px solid var(--incise);
-  border-bottom: 1px solid #24282b;
+  border-bottom: 1px solid #1c2a44;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
   padding: 20px 22px;
   font-size: 15px;
@@ -943,3 +944,78 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   white-space: nowrap;
   border: 0;
 }
+
+/* -------------------------------------------------------------------------
+   青い光(2026-09-12)
+   背景にうっすら方眼の線を敷き、ロゴの板・見出しの線・押せる所に
+   青い光を足しています。基盤の回路のような空気を出すためです。
+   ------------------------------------------------------------------------- */
+body {
+  background-image:
+    linear-gradient(rgba(76,157,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76,157,255,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero { background: radial-gradient(ellipse 70% 62% at 50% 38%, rgba(46,120,255,0.18), transparent 72%); }
+.plate {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.055),
+    0 26px 70px rgba(0,0,0,0.62),
+    0 0 0 1px rgba(76,157,255,0.12),
+    0 0 90px rgba(46,120,255,0.16);
+}
+.spec-label::before { box-shadow: 0 0 10px rgba(76,157,255,0.8); }
+.creed-rule { box-shadow: 0 0 12px rgba(76,157,255,0.7); }
+a.row:hover .row-name { color: #fff; text-shadow: 0 0 18px rgba(76,157,255,0.5); }
+a.row:hover .row-icon { box-shadow: 0 0 0 1px rgba(76,157,255,0.4), 0 0 26px rgba(76,157,255,0.3); }
+.mascot { box-shadow: 0 18px 42px rgba(0,0,0,0.55), 0 0 40px rgba(46,120,255,0.22), inset 0 0 0 1px rgba(120,180,255,0.12); }
+
+/* -------------------------------------------------------------------------
+   画像を足した場所(2026-09-12)
+   ・理念の右 … 縦長の画像(スマホでは文章の下に横長で)
+   ・フッター … 小さい画像を暗く沈めて背景の模様に
+   ・アプリ詳細ページの見出し … 回路の画像をうっすら
+   どれも装飾なので alt は空です。
+   ------------------------------------------------------------------------- */
+.philo-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; align-items: center; }
+.philo-img {
+  position: relative; margin: 0;
+  width: clamp(150px, 17vw, 210px); aspect-ratio: 608 / 1080;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.55), 0 0 40px rgba(46,120,255,0.22);
+}
+.philo-img img { width: 100%; height: 100%; object-fit: cover; }
+.philo-img::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 26px 8px var(--panel-low); }
+@media (max-width: 760px) {
+  .philo-grid { grid-template-columns: 1fr; row-gap: 28px; }
+  .philo-img { width: 100%; aspect-ratio: 16 / 9; }
+  .philo-img img { object-position: center 55%; }
+}
+.site-footer {
+  padding-block: 64px;
+  background:
+    linear-gradient(180deg, var(--ground) 0%, rgba(7,11,20,0.80) 45%, rgba(7,11,20,0.72) 100%),
+    url("/assets/foot.jpg") center / cover no-repeat;
+}
+.page-head {
+  padding-bottom: 44px;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,0.62) 0%, rgba(7,11,20,0.80) 60%, var(--ground) 100%),
+    url("/assets/head-circuit.jpg") center / cover no-repeat;
+}
+
+/* -------------------------------------------------------------------------
+   動画の帯(トップページ、製品の上)
+   .band の中に img の代わりに video を置いたものです。上下を地の色に
+   溶かす膜(.band::after)は、画像の帯と同じものがそのまま掛かります。
+   ------------------------------------------------------------------------- */
+.band-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 60%;
+  /* 動画の基盤は緑がかっているので、サイトの紺に少し寄せる */
+  filter: saturate(0.75) hue-rotate(18deg) brightness(0.95);
+}
+
+/* 繰り返し動画は最初から青いので、色味は変えない */
+.band-video--loop { filter: none; object-position: center; }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Primary Dice｜スマートフォンアプリの企画・開発</title>
 <meta name="description" content="Primary Dice は、Android アプリを企画から公開まで制作している個人事業です。家計簿アプリ「マネログ」、通貨換算アプリ「KAWASE」、アジア8都市の両替ガイド「レートハント」、拡大鏡アプリ「ミエルーペ」を開発しています。">
-<meta name="theme-color" content="#0e0f10">
+<meta name="theme-color" content="#070b14">
 <link rel="canonical" href="https://primarydice.github.io/">
 
 <!-- Google Search Console の所有権確認タグ(2026-09-02 設置)。
@@ -94,14 +94,24 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
     </div>
   </section>
 
-  <!-- ===== 画像の帯 =====
-       装飾なので alt は空にしています(読み上げソフトは読み飛ばします)。
-       2026-09-12 に金属の画像(hero-a.jpg)から、光る基盤の画像に替えました。
-       光の色がオレンジ〜金なので、見出しの金の線とそろいます。
-       青い光の画像は、サイトの中でそこだけ色が浮くので使っていません。 -->
-  <section class="band is-a">
-    <img class="band-img" src="/assets/hero-circuit.jpg" alt="" width="1920" height="1079">
+  <!-- ===== 動画の帯(繰り返し) =====
+       基盤の回路に電気が走り続ける動画です。終わりと始まりを重ねてあるので、継ぎ目なく繰り返します。
+       帯が画面に入っているあいだだけ再生し、画面の外に出たら止めます(電池と通信の節約)。
+       「視差効果を減らす」設定の人には、動画を再生せず静止画だけを見せます。 -->
+  <section class="band band--video">
+    <video class="band-video band-video--loop" src="/assets/kiban-loop.mp4" poster="/assets/kiban-loop-start.jpg"
+           muted loop playsinline preload="metadata" aria-hidden="true"></video>
   </section>
+  <script>
+    (function () {
+      var v = document.querySelector('.band-video');
+      if (!v) { return; }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { v.poster = '/assets/kiban-loop-still.jpg'; return; }
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { v.play().catch(function () {}); } else { v.pause(); }
+      }, { threshold: 0.2 }).observe(v);
+    })();
+  </script>
 
   <!-- ===== 製品 ===== -->
   <section class="section" id="products" style="padding-top:0">
@@ -218,6 +228,12 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
     </div>
   </section>
 
+  <!-- ===== 画像の帯(ページ中盤) =====
+       光の中心に向かってゆっくり寄っていく帯です(動きは .band.is-c)。装飾なので alt は空です。 -->
+  <section class="band is-c">
+    <img class="band-img" src="/assets/band-flow.jpg" alt="" width="1920" height="1012" loading="lazy">
+  </section>
+
   <!-- ===== 理念 =====
        銘板の下にある英字の標語(Ideas become innovation.)は「掲げる一言」、
        こちらはその中身を日本語で述べたものです。役割が違うので両方置いています。
@@ -227,9 +243,13 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
     <div class="wrap spec reveal">
       <h2 class="spec-label">理念</h2>
       <div class="spec-body">
-        <div class="philosophy">
-          <p>自由な発想と確かな技術で、アイデアを未来の価値へと変え、人々の暮らしと社会をより豊かにします。</p>
-          <p>未来は待つものではなく、自ら創り出すもの。その信念のもと、挑戦を続け、新しい時代を切り拓いていきます。</p>
+        <!-- 左に理念の文、右に縦長の画像。スマホでは画像が文の下に横長で入ります。 -->
+        <div class="philo-grid">
+          <div class="philosophy">
+            <p>自由な発想と確かな技術で、アイデアを未来の価値へと変え、人々の暮らしと社会をより豊かにします。</p>
+            <p>未来は待つものではなく、自ら創り出すもの。その信念のもと、挑戦を続け、新しい時代を切り拓いていきます。</p>
+          </div>
+          <figure class="philo-img"><img src="/assets/philo.jpg" alt="" width="608" height="1080" loading="lazy"></figure>
         </div>
         <hr class="incise">
       </div>
