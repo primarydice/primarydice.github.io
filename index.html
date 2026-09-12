@@ -94,22 +94,26 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
     </div>
   </section>
 
-  <!-- ===== 動画の帯(繰り返し) =====
-       基盤の回路に電気が走り続ける動画です。終わりと始まりを重ねてあるので、継ぎ目なく繰り返します。
-       帯が画面に入っているあいだだけ再生し、画面の外に出たら止めます(電池と通信の節約)。
-       「視差効果を減らす」設定の人には、動画を再生せず静止画だけを見せます。 -->
+  <!-- ===== 動画の帯 =====
+       真っ暗な基盤に電気が走って広がり、光りきったところで止まります(繰り返しません)。
+       繰り返し用に作った動画ではないので、ループさせると最後の明るい場面から
+       最初の暗い場面へ一瞬で戻り、チカッと切り替わって見えるためです。
+       帯が画面に入ったときに1回だけ再生します。音声は入っていません。
+       最初は1コマ目(電気が来る前の暗い基盤)を見せておき、再生でそのまま続けます。
+       「視差効果を減らす」設定の人には、動画を再生せず、光りきった最後のコマを静止画で見せます。 -->
   <section class="band band--video">
-    <video class="band-video band-video--loop" src="/assets/kiban-loop.mp4" poster="/assets/kiban-loop-start.jpg"
-           muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <video class="band-video" src="/assets/kiban.mp4" poster="/assets/kiban-start.jpg"
+           muted playsinline preload="metadata" aria-hidden="true"></video>
   </section>
   <script>
     (function () {
       var v = document.querySelector('.band-video');
       if (!v) { return; }
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { v.poster = '/assets/kiban-loop-still.jpg'; return; }
-      new IntersectionObserver(function (es) {
-        if (es[0].isIntersecting) { v.play().catch(function () {}); } else { v.pause(); }
-      }, { threshold: 0.2 }).observe(v);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { v.poster = '/assets/kiban-end.jpg'; return; }
+      var io = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { v.play().catch(function () {}); io.disconnect(); }
+      }, { threshold: 0.35 });
+      io.observe(v);
     })();
   </script>
 

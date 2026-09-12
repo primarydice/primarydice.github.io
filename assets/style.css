@@ -1017,5 +1017,3 @@ a.row:hover .row-icon { box-shadow: 0 0 0 1px rgba(76,157,255,0.4), 0 0 26px rgb
   filter: saturate(0.75) hue-rotate(18deg) brightness(0.95);
 }
 
-/* 繰り返し動画は最初から青いので、色味は変えない */
-.band-video--loop { filter: none; object-position: center; }
