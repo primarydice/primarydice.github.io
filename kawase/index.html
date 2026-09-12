@@ -85,6 +85,50 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
 
   <hr class="incise">
 
+  <!-- ===== 紹介動画(YouTube) =====
+       YouTube の動画をそのまま埋め込むと、ページを開いただけで Google に閲覧の情報が送られ、
+       プライバシーポリシーの「Cookie を使わない・解析しない」と食い違います。
+       そこで、最初は手元に置いた静止画(動画の最初の画面)だけを表示し、
+       再生ボタンを押したときに初めて YouTube の動画を読み込みます。
+       読み込み先は、Cookie を控えめにする YouTube の「プライバシー強化モード」(youtube-nocookie.com)です。
+       JavaScript が動かない環境では、下の「YouTube で見る」から見られます。 -->
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">動画</h2>
+      <div class="spec-body">
+        <div class="yt" data-yt="7I9WFklz9Zo" data-title="通貨換算アプリ kawase">
+          <button type="button" class="yt-play" aria-label="動画「通貨換算アプリ kawase」を再生する（YouTube から読み込みます）">
+            <img src="/assets/apps/kawase/video-thumb.jpg" alt="" width="1280" height="720" loading="lazy">
+            <span class="yt-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <p class="small dim" style="margin-top:12px">
+          再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。
+          <a href="https://youtu.be/7I9WFklz9Zo" rel="noopener">YouTube で見る</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var box = document.querySelector('.yt');
+      if (!box) { return; }
+      box.querySelector('.yt-play').addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
+        f.title = box.getAttribute('data-title');
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        box.innerHTML = '';
+        box.appendChild(f);
+        f.focus();
+      });
+    })();
+  </script>
+
+  <hr class="incise">
+
   <section class="section">
     <div class="wrap spec reveal">
       <h2 class="spec-label">機能</h2>
