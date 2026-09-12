@@ -532,7 +532,7 @@ p.creed {
 .spec-label {
   position: relative;
   font-family: var(--body);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.26em;
   line-height: 2;
@@ -620,7 +620,7 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   .row--noicon > .stamp { grid-column: 2; justify-self: start; }
 }
 
-/* 研究段階のものは、製品より一段引いて置く */
+/* 開発中・試作のものは、製品より一段引いて置く */
 .row--lab { grid-template-columns: 1fr auto; padding: 22px 4px; }
 .row--lab .row-name { font-size: 17px; color: var(--steel); }
 @media (max-width: 620px) {
