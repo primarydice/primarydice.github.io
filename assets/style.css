@@ -602,6 +602,8 @@ a.row:hover, a.row:focus-visible,
 .gp-badge--lg img { height: 56px; }
 .gp-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .tm { margin: 14px 0 0; font-size: 12px; color: var(--steel-dim); }
+/* トップの製品一覧では、右端のバッジの列にそろえて右に寄せる */
+.tm--end { text-align: right; }
 .rows > .incise:last-child { display: block; }
 
 .row-icon { width: 54px; height: 54px; border-radius: 12px; }
