@@ -578,9 +578,30 @@ p.creed {
   transition: background 0.3s ease;
 }
 /* 触れると、板の表面を光がなでるように見せる */
-a.row:hover, a.row:focus-visible {
+a.row:hover, a.row:focus-visible,
+.row--app:hover, .row--app:focus-within {
   background: linear-gradient(96deg, rgba(255,255,255,0.045), rgba(255,255,255,0) 72%);
 }
+
+/* 製品の行(2026-09-13 に Google Play のバッジを足した形)
+   行はリンクにせず、アプリ名のリンクの当たり判定を行いっぱいに広げます(::after)。
+   バッジは z-index で上に重ね、バッジの所だけ Google Play へ飛ぶようにしています。 */
+.row--app { position: relative; }
+.row-link { color: inherit; text-decoration: none; }
+.row-link::after { content: ""; position: absolute; inset: 0; }
+.row-link:focus-visible { outline: none; }
+.row-link:focus-visible::after { outline: 2px solid var(--accent); outline-offset: -2px; }
+.row--app .gp-badge { position: relative; z-index: 1; }
+@media (max-width: 620px) {
+  .row--app .gp-badge { grid-column: 2; justify-self: start; }
+}
+
+/* Google Play のバッジ。Google の決まりで、画像そのものは色も形も変えません */
+.gp-badge { display: inline-block; line-height: 0; border-radius: 8px; }
+.gp-badge img { display: block; height: 48px; width: auto; }
+.gp-badge--lg img { height: 56px; }
+.gp-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tm { margin: 14px 0 0; font-size: 12px; color: var(--steel-dim); }
 .rows > .incise:last-child { display: block; }
 
 .row-icon { width: 54px; height: 54px; border-radius: 12px; }
@@ -966,8 +987,8 @@ body {
 }
 .spec-label::before { box-shadow: 0 0 10px rgba(76,157,255,0.8); }
 .creed-rule { box-shadow: 0 0 12px rgba(76,157,255,0.7); }
-a.row:hover .row-name { color: #fff; text-shadow: 0 0 18px rgba(76,157,255,0.5); }
-a.row:hover .row-icon { box-shadow: 0 0 0 1px rgba(76,157,255,0.4), 0 0 26px rgba(76,157,255,0.3); }
+a.row:hover .row-name, .row--app:hover .row-name { color: #fff; text-shadow: 0 0 18px rgba(76,157,255,0.5); }
+a.row:hover .row-icon, .row--app:hover .row-icon { box-shadow: 0 0 0 1px rgba(76,157,255,0.4), 0 0 26px rgba(76,157,255,0.3); }
 .mascot { box-shadow: 0 18px 42px rgba(0,0,0,0.55), 0 0 40px rgba(46,120,255,0.22), inset 0 0 0 1px rgba(120,180,255,0.12); }
 
 /* -------------------------------------------------------------------------

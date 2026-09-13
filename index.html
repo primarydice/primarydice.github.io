@@ -128,49 +128,55 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
              画面の幅が狭いときは、2文目がさらに折り返されます(それで正しい動きです)。 -->
         <p class="dim" style="max-width:30em;margin:0">
           Android アプリを、企画から公開まで制作しています。<br>
-          4つとも作り終えて、Google Play での公開を準備しています。公開しだい、ここからストアへご案内します。
+          4つとも Google Play で公開しています。バッジを押すと、ストアのページが開きます。
         </p>
 
+        <!-- 行のどこを押しても詳細ページへ、バッジを押したときだけ Google Play へ飛びます。
+             リンクの中にリンクは入れられない決まりなので、行そのものはリンクにせず、
+             アプリ名のリンク(.row-link)の当たり判定を行いっぱいに広げています。
+             バッジはその上に重ねてあるので、バッジの所だけは Google Play へのリンクになります。
+             バッジの画像は Google 公式のもの(assets/google-play-badge.svg)を、手を加えずに使っています。 -->
         <div class="rows">
 
-          <a class="row" href="/manelog/">
+          <div class="row row--app">
             <img class="row-icon" src="/assets/apps/manelog/icon.png" alt="" width="192" height="192" loading="lazy">
             <div>
-              <h3 class="row-name">マネログ</h3>
+              <h3 class="row-name"><a class="row-link" href="/manelog/">マネログ</a></h3>
               <p class="row-desc">レシートを撮る、カード明細の PDF を読み込む。それだけで記録できる家計簿。</p>
             </div>
-            <span class="row-go">詳細 →</span>
-          </a>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.manelog" rel="noopener"><img src="/assets/google-play-badge.svg" alt="マネログを Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
 
-          <a class="row" href="/kawase/">
+          <div class="row row--app">
             <img class="row-icon" src="/assets/apps/kawase/icon.png" alt="" width="192" height="192" loading="lazy">
             <div>
-              <h3 class="row-name">KAWASE</h3>
+              <h3 class="row-name"><a class="row-link" href="/kawase/">KAWASE</a></h3>
               <p class="row-desc">いまのレートで通貨換算。物価のちがいも一緒に分かる。</p>
             </div>
-            <span class="row-go">詳細 →</span>
-          </a>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.kawase" rel="noopener"><img src="/assets/google-play-badge.svg" alt="KAWASE を Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
 
-          <a class="row" href="/ratehunt/">
+          <div class="row row--app">
             <img class="row-icon" src="/assets/apps/ratehunt/icon.png" alt="" width="192" height="192" loading="lazy">
             <div>
-              <h3 class="row-name">レートハント</h3>
+              <h3 class="row-name"><a class="row-link" href="/ratehunt/">レートハント</a></h3>
               <p class="row-desc">アジア8都市の両替を、お店の種類ごとに案内。街ごとに違う「空港での正解」つき。</p>
             </div>
-            <span class="row-go">詳細 →</span>
-          </a>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.ratehunt" rel="noopener"><img src="/assets/google-play-badge.svg" alt="レートハントを Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
 
-          <a class="row" href="/mielupe/">
+          <div class="row row--app">
             <img class="row-icon" src="/assets/apps/mielupe/icon.png" alt="" width="192" height="192" loading="lazy">
             <div>
-              <h3 class="row-name">ミエルーペ</h3>
+              <h3 class="row-name"><a class="row-link" href="/mielupe/">ミエルーペ</a></h3>
               <p class="row-desc">カメラをかざすだけの拡大鏡。止めてゆっくり読める。</p>
             </div>
-            <span class="row-go">詳細 →</span>
-          </a>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.mielupe" rel="noopener"><img src="/assets/google-play-badge.svg" alt="ミエルーペを Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
 
           <hr class="incise">
         </div>
+        <p class="tm">Google Play および Google Play ロゴは Google LLC の商標です。</p>
       </div>
     </div>
   </section>
@@ -223,6 +229,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
       <h2 class="spec-label">記録</h2>
       <div class="spec-body">
         <ul class="log">
+          <li><time class="data" datetime="2026-09-13">2026.09.13</time><span>マネログ・KAWASE・レートハント・ミエルーペの4つを、Google Play で公開しました。</span></li>
           <li><time class="data" datetime="2026-09-01">2026.09.01</time><span>トリップキットの開発を開始しました。</span></li>
           <li><time class="data" datetime="2026-08-27">2026.08.27</time><span>レートハントの対応都市をアジア8都市に広げました。</span></li>
           <li><time class="data" datetime="2026-08-20">2026.08.20</time><span>試作していたメガネアプリを「ミエルーペ」として作り終えました。</span></li>
