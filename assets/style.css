@@ -643,6 +643,17 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   .row--noicon > .stamp { grid-column: 2; justify-self: start; }
 }
 
+/* 手引き(読みもの)の行。アイコンが無いので2列。右端の「読む」は a.row:hover で色が変わる */
+.row--guide { grid-template-columns: 1fr auto; padding: 22px 4px; }
+.row--guide .row-name { font-size: 17px; }
+@media (max-width: 620px) {
+  /* 狭い画面では1列にして、「読む」は次の行の左端へ。
+     .row-go には上の方で grid-column: 2 が指定してあるので、ここで 1 に戻さないと
+     列が1つ増えてしまい、見出しが不自然に折り返す */
+  .row--guide { grid-template-columns: 1fr; }
+  .row--guide .row-go { grid-column: 1; justify-self: start; }
+}
+
 /* 開発中・試作のものは、製品より一段引いて置く */
 .row--lab { grid-template-columns: 1fr auto; padding: 22px 4px; }
 .row--lab .row-name { font-size: 17px; color: var(--steel); }
