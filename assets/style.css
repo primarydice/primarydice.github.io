@@ -895,6 +895,29 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
 /* 手引き(読みもの)では左右に並べず、上から順に読ませる */
 .features--stack { grid-template-columns: 1fr; max-width: 38em; }
 
+/* 手引きの記事の合間に入れる写真と図。
+   写真は Unsplash の無料ライセンス(撮影者名の表示は不要)のものを assets/guide/ に置いています。
+   図は SVG で直接書いているので、色はこの下の --fig-* で変えられます。 */
+.guide-fig { margin: 0; max-width: 38em; }
+.note + .guide-fig, p + .guide-fig { margin-top: 26px; }
+.guide-fig + .note { margin-top: 26px; }
+.guide-fig img, .guide-fig svg {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--lip); border-radius: 4px;
+}
+.guide-fig svg { background: var(--panel-low); }
+.guide-fig figcaption { margin-top: 10px; font-size: 13px; line-height: 1.7; color: var(--steel-dim); }
+.guide-fig svg text { font-family: var(--body); }
+.guide-fig .fig-mono { font-family: var(--data); }
+.guide-fig .fig-t { fill: var(--steel); }
+.guide-fig .fig-d { fill: var(--steel-dim); }
+.guide-fig .fig-a { fill: var(--accent); }
+.guide-fig .fig-box { fill: var(--panel); stroke: var(--lip); }
+.guide-fig .fig-base { fill: var(--steel-dim); fill-opacity: 0.35; }
+.guide-fig .fig-bar { fill: var(--accent-dim); }
+.guide-fig .fig-gap { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 5; }
+.guide-fig .fig-line { fill: none; stroke: var(--accent); stroke-width: 2; }
+
 /* 質問と答え */
 .faq { display: grid; gap: 24px; margin-top: 30px; }
 .faq h3 { font-size: 16px; letter-spacing: 0.06em; margin-bottom: 6px; }

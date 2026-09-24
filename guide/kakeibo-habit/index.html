@@ -34,7 +34,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
   "description": "家計簿が続かない理由を「入力が面倒」「自分の使い方に合わない」「見返さない」の3つに分け、それぞれを仕組みで直す方法をまとめた記事。",
   "url": "https://primarydice.github.io/guide/kakeibo-habit/",
   "datePublished": "2026-09-23",
-  "dateModified": "2026-09-23",
+  "dateModified": "2026-09-24",
   "inLanguage": "ja",
   "author": { "@type": "Organization", "name": "Primary Dice" },
   "publisher": { "@type": "Organization", "name": "Primary Dice" }
@@ -93,6 +93,10 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
       <div class="spec-body">
         <div class="features features--stack" style="margin-top:0">
 
+          <figure class="guide-fig">
+            <img src="/assets/guide/receipts.jpg" alt="くしゃくしゃになった買い物のレシート" width="1400" height="788" loading="lazy" decoding="async">
+          </figure>
+
           <div>
             <h3>1件30秒でも、1か月で1時間になる</h3>
             <p>手で打つ家計簿は、1件あたり30秒ほどかかります。1日4件なら2分、1か月で1時間です。問題は総量より「たまること」で、2〜3日さぼるとレシートの山ができ、山を見た時点でやめたくなります。続けるための第一歩は、気合いを入れることではなく<strong>打つ作業そのものを減らすこと</strong>です。</p>
@@ -115,6 +119,26 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
             </ul>
             <p>マネログでは、金額を1行だけで判断せず、合計・小計・クレジットなど<strong>複数の行を突き合わせて多数決で決める</strong>作りにしています。それでも全部の行が同じように化けたレシートは直せません。</p>
           </div>
+
+          <figure class="guide-fig">
+            <svg viewBox="0 0 640 330" role="img" aria-label="レシートの「合計 ¥960」が「4960」と読まれ、「2,860」が「2,86O」と読まれる例">
+              <text class="fig-d" x="32" y="42" font-size="19">レシートの印字</text>
+              <text class="fig-d" x="360" y="42" font-size="19">スマホが読んだ結果</text>
+              <rect class="fig-box" x="32" y="60" width="264" height="76" rx="4"/>
+              <text class="fig-t fig-mono" x="56" y="110" font-size="30">合計 ¥960</text>
+              <text class="fig-d" x="328" y="108" font-size="28" text-anchor="middle">→</text>
+              <rect class="fig-box" x="360" y="60" width="248" height="76" rx="4"/>
+              <text class="fig-t fig-mono" x="384" y="110" font-size="30"><tspan class="fig-a">4</tspan>960</text>
+              <text class="fig-d" x="360" y="164" font-size="18">「¥」が「4」に化けた</text>
+              <rect class="fig-box" x="32" y="190" width="264" height="76" rx="4"/>
+              <text class="fig-t fig-mono" x="56" y="240" font-size="30">¥2,860</text>
+              <text class="fig-d" x="328" y="238" font-size="28" text-anchor="middle">→</text>
+              <rect class="fig-box" x="360" y="190" width="248" height="76" rx="4"/>
+              <text class="fig-t fig-mono" x="384" y="240" font-size="30">2,86<tspan class="fig-a">O</tspan></text>
+              <text class="fig-d" x="360" y="294" font-size="18">数字の「0」が英字の「O」に</text>
+            </svg>
+            <figcaption>実際に測ったときの読み間違いの例です。どちらも、見た目がよく似た別の字として読まれています。</figcaption>
+          </figure>
 
           <div>
             <h3>だから「金額だけ」は目で見る</h3>
@@ -161,6 +185,10 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
       <h2 class="spec-label">理由3・振り返り</h2>
       <div class="spec-body">
         <div class="features features--stack" style="margin-top:0">
+
+          <figure class="guide-fig">
+            <img src="/assets/guide/calculator.jpg" alt="机の上の電卓と、積み上げた硬貨" width="1400" height="788" loading="lazy" decoding="async">
+          </figure>
 
           <div>
             <h3>記録しただけでは、何も変わらない</h3>
