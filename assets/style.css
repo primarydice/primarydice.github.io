@@ -892,6 +892,8 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
 }
 .features h3 { font-size: 17px; letter-spacing: 0.08em; margin-bottom: 8px; }
 .features p { font-size: 15px; line-height: 1.85; color: var(--steel-dim); margin: 0; }
+/* 手引き(読みもの)では左右に並べず、上から順に読ませる */
+.features--stack { grid-template-columns: 1fr; max-width: 38em; }
 
 /* 質問と答え */
 .faq { display: grid; gap: 24px; margin-top: 30px; }
