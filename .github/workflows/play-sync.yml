@@ -36,7 +36,7 @@ jobs:
           commit-message: Google Play の新しい版をサイトに反映
           title: Google Play の新しい版をサイトに反映
           body-path: ${{ runner.temp }}/pr-body.md
-          assignees: daisukekaj
+          assignees: primarydice
           add-paths: |
             index.html
             sitemap.xml
