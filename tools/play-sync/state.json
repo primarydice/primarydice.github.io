@@ -4,24 +4,24 @@
       "name": "マネログ",
       "slug": "manelog",
       "appId": "app.primarydice.manelog",
-      "version": null,
-      "shotsHash": null,
+      "version": "1.0.3",
+      "shotsHash": "b42c320e3ad1",
       "ngWords": []
     },
     {
       "name": "KAWASE",
       "slug": "kawase",
       "appId": "app.primarydice.kawase",
-      "version": null,
-      "shotsHash": null,
+      "version": "1.0.3",
+      "shotsHash": "0312ab08e4c8",
       "ngWords": []
     },
     {
       "name": "レートハント",
       "slug": "ratehunt",
       "appId": "app.primarydice.ratehunt",
-      "version": null,
-      "shotsHash": null,
+      "version": "1.0.3",
+      "shotsHash": "979b91c7f1d7",
       "ngWords": [
         "最安の両替所が見つかる",
         "必ず",
@@ -37,8 +37,8 @@
       "name": "ミエルーペ",
       "slug": "mielupe",
       "appId": "app.primarydice.mielupe",
-      "version": null,
-      "shotsHash": null,
+      "version": "1.0.1",
+      "shotsHash": "a914a73f7156",
       "ngWords": [
         "視力が良くなる",
         "メガネの代わり",
