@@ -60,6 +60,7 @@ function checkWords(app, lines) {
 const report = [];   // プルリクエストの本文
 const warnings = [];
 let changed = false;
+const updated = []; // 新しい版が出ていたアプリ
 
 for (const app of state.apps) {
   let info;
@@ -87,14 +88,8 @@ for (const app of state.apps) {
   const hits = checkWords(app, notes);
   if (hits.length) warnings.push(`${app.name}: 「新機能」の文に、サイトでは使わない言葉があります → ${[...new Set(hits)].join('、')}。Merge の前に直してください。`);
 
-  // 1) トップの「記録」に1行足す(同じ版の行がもうあれば足さない)
-  let top = read('index.html');
-  const line = `${app.name}を ${info.version} に更新しました。`;
-  if (!top.includes(line)) {
-    top = top.replace(/(<ul class="log">\r?\n)/,
-      `$1          <li><time class="data" datetime="${date}">${dot}</time><span>${esc(line)}</span></li>\n`);
-    write('index.html', top);
-  }
+  // 1) トップの「記録」は、全部のアプリを見終わってから1行にまとめて足す(下の方)
+  updated.push({ name: app.name, version: info.version, date });
 
   // 2) アプリのページの「最新版」の欄
   const pagePath = `${app.slug}/index.html`;
@@ -135,9 +130,25 @@ for (const app of state.apps) {
 
   report.push(`### ${app.name}: ${app.version ?? '(初回)'} → ${info.version}（${dot} 更新）`,
     ...notes.map((n) => `- ${n}`),
-    '', `記録に「${line}」を足しました。`, '');
+    '');
   app.version = info.version;
   changed = true;
+}
+
+// 記録に1行足す。同じ日に複数のアプリが更新されても1行にまとめる
+// 例: 「マネログ・KAWASEを 1.0.3 に、ミエルーペを 1.0.1 に更新しました。」
+if (updated.length) {
+  const byVer = new Map();
+  for (const u of updated) byVer.set(u.version, [...(byVer.get(u.version) || []), u.name]);
+  const line = [...byVer].map(([v, names]) => `${names.join('・')}を ${v} に`).join('、') + '更新しました。';
+  const date = updated.map((u) => u.date).sort().at(-1);
+  let top = read('index.html');
+  if (!top.includes(esc(line))) {
+    top = top.replace(/(<ul class="log">\r?\n)/,
+      `$1          <li><time class="data" datetime="${date}">${date.replace(/-/g, '.')}</time><span>${esc(line)}</span></li>\n`);
+    write('index.html', top);
+  }
+  report.unshift(`記録に「${line}」を足しました。`, '');
 }
 
 fs.writeFileSync(statePath, JSON.stringify(state, null, 2) + '\n');
