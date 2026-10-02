@@ -17,8 +17,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - name: Google Play を読んでサイトを書き換える
@@ -29,7 +29,7 @@ jobs:
           npm install --ignore-scripts --no-audit --no-fund
           node sync.mjs
       - name: プルリクエストを作る(書き換えが無ければ何もしない)
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: play-sync
           delete-branch: true
