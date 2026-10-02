@@ -1,0 +1,51 @@
+{
+  "apps": [
+    {
+      "name": "マネログ",
+      "slug": "manelog",
+      "appId": "app.primarydice.manelog",
+      "version": null,
+      "shotsHash": null,
+      "ngWords": []
+    },
+    {
+      "name": "KAWASE",
+      "slug": "kawase",
+      "appId": "app.primarydice.kawase",
+      "version": null,
+      "shotsHash": null,
+      "ngWords": []
+    },
+    {
+      "name": "レートハント",
+      "slug": "ratehunt",
+      "appId": "app.primarydice.ratehunt",
+      "version": null,
+      "shotsHash": null,
+      "ngWords": [
+        "最安の両替所が見つかる",
+        "必ず",
+        "お得",
+        "空港は損",
+        "銀行なら安心",
+        "レートの良い店を探せる",
+        "認可された両替所を掲載",
+        "安い両替所が見つかる"
+      ]
+    },
+    {
+      "name": "ミエルーペ",
+      "slug": "mielupe",
+      "appId": "app.primarydice.mielupe",
+      "version": null,
+      "shotsHash": null,
+      "ngWords": [
+        "視力が良くなる",
+        "メガネの代わり",
+        "老眼が改善",
+        "視力回復",
+        "目が良くなる"
+      ]
+    }
+  ]
+}

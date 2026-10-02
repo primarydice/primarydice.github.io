@@ -1,0 +1,44 @@
+# 1日1回、Google Play に各アプリの新しい版が出ていないかを見に行き、
+# 出ていたら会社サイトを書き換えた「プルリクエスト(変更の下書き)」を作ります。
+# 本番に出るのは、持ち主が中身を見て [Merge] を押したときだけです。
+# 中身は tools/play-sync/sync.mjs を見てください。
+name: Google Play の更新をサイトに反映
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 毎日 9:00(日本時間)
+  workflow_dispatch:       # Actions の画面から手で動かすこともできる
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Google Play を読んでサイトを書き換える
+        working-directory: tools/play-sync
+        env:
+          PR_BODY_FILE: ${{ runner.temp }}/pr-body.md
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          node sync.mjs
+      - name: プルリクエストを作る(書き換えが無ければ何もしない)
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: play-sync
+          delete-branch: true
+          commit-message: Google Play の新しい版をサイトに反映
+          title: Google Play の新しい版をサイトに反映
+          body-path: ${{ runner.temp }}/pr-body.md
+          assignees: daisukekaj
+          add-paths: |
+            index.html
+            sitemap.xml
+            */index.html
+            tools/play-sync/state.json

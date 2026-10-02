@@ -1,0 +1,9 @@
+{
+  "name": "play-sync",
+  "private": true,
+  "type": "module",
+  "description": "Google Play の最新版を読み、会社サイトを書き換える",
+  "dependencies": {
+    "google-play-scraper": "^10.1.3"
+  }
+}
