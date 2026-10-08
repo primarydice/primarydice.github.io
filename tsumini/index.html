@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>積み荷｜トラックの積み付けを3Dで計算するアプリ | Primary Dice</title>
+<meta name="description" content="積み荷は、トラックの荷台と荷物の大きさ・重さを入れると、積み方の案を計算して3Dで見せる Android アプリです。荷台は軽バンから10t車まで12種類のひな形、荷姿は段ボール箱・パレット・カゴテナーなど6種類。伝票を撮って荷物を読み取る機能（スマホの中だけで処理）と、1日1回のデコトラのガチャもあります。">
+<meta name="theme-color" content="#070b14">
+<link rel="canonical" href="https://primarydice.github.io/tsumini/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Primary Dice">
+<meta property="og:title" content="積み荷｜トラックの積み付けを3Dで計算">
+<meta property="og:description" content="荷台と荷物の大きさ・重さを入れると、積み方の案を3Dで見せます。伝票の読み取りと、デコトラのガチャつき。">
+<meta property="og:url" content="https://primarydice.github.io/tsumini/">
+<meta property="og:image" content="https://primarydice.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+
+<script>
+if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.className += ' js-reveal';
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "積み荷",
+  "operatingSystem": "Android",
+  "applicationCategory": "BusinessApplication",
+  "url": "https://primarydice.github.io/tsumini/",
+  "installUrl": "https://play.google.com/store/apps/details?id=app.primarydice.tsumini",
+  "softwareVersion": "1.0",
+  "dateModified": "2026-10-03",
+  "description": "トラックの荷台と荷物の大きさ・重さを入れると、積み方の案を計算して3Dで見せるアプリ。伝票の読み取りと、デコトラのガチャつき。",
+  "author": { "@type": "Organization", "name": "Primary Dice" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="home" href="/"><img src="/assets/logo.png" alt="Primary Dice" width="879" height="200"></a>
+    <nav class="site-nav" aria-label="サイト内">
+      <a href="/#products">Products</a>
+      <a href="/#labs">Labs</a>
+      <a href="/#company">Company</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <div class="app-head">
+        <img src="/assets/apps/tsumini/icon.png" alt="" width="192" height="192">
+        <h1 class="polish">積み荷</h1>
+      </div>
+      <p class="hero-note" style="margin-top:12px">
+        荷台と荷物の大きさ・重さを入れると、積み方の案を3Dで見せます。<br>
+        伝票を撮れば、荷物を読み取ることもできます。
+      </p>
+      <p style="margin-top:26px"><a class="gp-badge gp-badge--lg" href="https://play.google.com/store/apps/details?id=app.primarydice.tsumini" rel="noopener"><img src="/assets/google-play-badge.svg" alt="Google Play で手に入れよう" width="180" height="53"></a></p>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="shots">
+        <!-- ストアに載せている1枚絵です(スマホの枠が絵に描き込まれているので .card を使う)。
+             元の絵は truck-loading-app/store-assets/screenshots/ にあります -->
+        <div class="card"><img src="/assets/apps/tsumini/shot-01.jpg" alt="「積み方を3Dで見せる」の見出しと、平ボディに荷物を積んだ3Dの画面と、積み方の点数" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/tsumini/shot-02.jpg" alt="「大きさと重さを入れるだけ」の見出しと、今回の荷物の一覧の画面。荷姿は6種類" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/tsumini/shot-03.jpg" alt="「伝票を撮れば荷物を読み取る」の見出しと、読み取った品名と寸法を確かめる表の画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/tsumini/shot-04.jpg" alt="「何を優先するかえらべる」の見出しと、スペース効率・重量バランス・前詰め・配送順のつまみの画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/tsumini/shot-05.jpg" alt="「軽バンから10t車まで」の見出しと、登録した荷台の一覧の画面。ひな形は12種類" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/tsumini/shot-06.jpg" alt="「1日1回のガチャでデコトラに」の見出しと、当たった部品を3Dの車に付ける画面" width="540" height="960" loading="lazy"></div>
+      </div>
+      <p class="small dim" style="margin-top:12px">横にスワイプすると、ほかの画面も見られます</p>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <!-- ===== 紹介動画(YouTube) =====
+       KAWASE・マネログ・レートハントのページと同じ作り。最初は手元に置いた静止画(YouTube のサムネイルと同じ絵)だけを表示し、
+       再生ボタンを押したときに初めて YouTube の動画を読み込みます(プライバシーポリシーの「動画」の節と対)。
+       読み込み先は、Cookie を控えめにする YouTube の「プライバシー強化モード」(youtube-nocookie.com)です。
+       JavaScript が動かない環境では、下の「YouTube で見る」から見られます。 -->
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">動画</h2>
+      <div class="spec-body">
+        <div class="yt" data-yt="oLlQUgDsrZE" data-title="トラック積み付けアプリ 積み荷｜積み方を3Dで見せる">
+          <button type="button" class="yt-play" aria-label="動画「トラック積み付けアプリ 積み荷｜積み方を3Dで見せる」を再生する（YouTube から読み込みます）">
+            <img src="/assets/apps/tsumini/video-thumb.jpg" alt="" width="1280" height="720" loading="lazy">
+            <span class="yt-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <p class="small dim" style="margin-top:12px">
+          再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。
+          <a href="https://youtu.be/oLlQUgDsrZE" rel="noopener">YouTube で見る</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var box = document.querySelector('.yt');
+      if (!box) { return; }
+      box.querySelector('.yt-play').addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
+        f.title = box.getAttribute('data-title');
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        box.innerHTML = '';
+        box.appendChild(f);
+        f.focus();
+      });
+    })();
+  </script>
+
+  <hr class="incise">
+
+  <!-- ===== ポイント =====
+       機能は上の画面写真で伝わるので、ここには写真からは分からないことだけを1行ずつ書く。 -->
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">ポイント</h2>
+      <div class="spec-body">
+        <ul class="list" style="max-width:38em">
+          <li>登録は要りません。荷台・荷物・保存したプランはスマホに保存し、こちらのサーバーには送りません。</li>
+          <li>伝票の写真はスマホの中で読み取り、写真も読んだ文字も保存・送信しません。電波が無くても読めます。</li>
+          <li>無料で使えます。ガチャもお金はかかりません（画面の上に広告が出ます）。</li>
+          <li>積み方は計算で出した案です。実際に積むときは、荷崩れ・荷物の固定・重さの制限を必ず確かめてください。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">質問</h2>
+      <div class="spec-body">
+        <div class="faq" style="max-width:40em;margin-top:0">
+          <div>
+            <h3>何個まで計算できますか</h3>
+            <p>1回の計算で、荷物は合わせて2000個までです。</p>
+          </div>
+          <div>
+            <h3>どんな伝票を読めますか</h3>
+            <p>品名・数量・重さ・大きさが印字された伝票です。読み違えることがあるので、確かめる表で直してから荷物のリストに入れます。</p>
+          </div>
+          <div>
+            <h3>ガチャで当たった部品は何に使いますか</h3>
+            <p>3Dの車に付けて飾れます。部品は全116種類で、1日1回引けます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">公開状況</h2>
+      <div class="spec-body">
+        <div class="note">
+          <p class="small">積み荷は Google Play で公開しています。下のバッジを押すと、ストアのページが開きます。</p>
+        </div>
+        <!-- play-sync:start  ここから下は tools/play-sync が自動で書き換えます。手で直すと次の更新で消えます -->
+        <div class="note" style="margin-top:18px">
+          <p class="small">最新版：<span class="data">1.0</span>（2026.10.03 更新）</p>
+          <p class="small">・積み荷を公開しました。</p>
+          <p class="small">・荷台と荷物を入れると、積み方の案を3Dで見せます</p>
+          <p class="small">・伝票を撮って、荷物を読み取れます</p>
+          <p class="small">・1日1回のガチャで、デコトラの部品が当たります</p>
+        </div>
+        <!-- play-sync:end -->
+        <p style="margin-top:18px"><a class="gp-badge gp-badge--lg" href="https://play.google.com/store/apps/details?id=app.primarydice.tsumini" rel="noopener"><img src="/assets/google-play-badge.svg" alt="Google Play で手に入れよう" width="180" height="53"></a></p>
+        <p class="tm">Google Play および Google Play ロゴは Google LLC の商標です。</p>
+        <p class="small" style="margin-top:12px"><a class="link-block" href="https://primarydice.github.io/privacy-policies/tsumini.html">積み荷のプライバシーポリシー</a></p>
+        <p style="margin-top:34px"><a class="btn" href="/#products">ほかの製品を見る</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="copy">© 2026 Primary Dice</span>
+    <span><a href="/privacy/">プライバシーポリシー</a></span>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

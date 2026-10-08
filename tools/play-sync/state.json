@@ -58,6 +58,19 @@
         "絶対",
         "最安"
       ]
+    },
+    {
+      "name": "積み荷",
+      "slug": "tsumini",
+      "appId": "app.primarydice.tsumini",
+      "version": "1.0",
+      "shotsHash": "72a6a656d394",
+      "ngWords": [
+        "必ず",
+        "最適な積み方",
+        "荷崩れしない",
+        "安全に積める"
+      ]
     }
   ]
 }

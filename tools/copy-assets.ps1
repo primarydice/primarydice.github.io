@@ -50,6 +50,13 @@ $apps = @(
         # 2026-10-08 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
         shots = @('スクショ1_ホーム.png','スクショ2_行き先と都市.png','スクショ3_スケジュール.png','スクショ4_AIに相談.png',
                   'スクショ5_換算.png','スクショ6_翻訳.png','スクショ7_お金の記録.png','スクショ8_旅の履歴.png')
+    },
+    @{
+        name = 'tsumini'
+        icon = 'truck-loading-app\store-assets\play-store-icon-512.png'
+        dir  = 'truck-loading-app\store-assets\screenshots'
+        # 2026-10-08 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
+        shots = @('スクショ1_積み付け.png','スクショ2_荷物.png','スクショ3_伝票.png','スクショ4_優先条件.png','スクショ5_荷台.png','スクショ6_ガチャ.png')
     }
 )
 
