@@ -46,6 +46,18 @@
         "視力回復",
         "目が良くなる"
       ]
+    },
+    {
+      "name": "トリップキット",
+      "slug": "tripkit",
+      "appId": "app.primarydice.tripkit",
+      "version": "1.0.1",
+      "shotsHash": "867bed9a3838",
+      "ngWords": [
+        "必ず",
+        "絶対",
+        "最安"
+      ]
     }
   ]
 }

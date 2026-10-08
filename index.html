@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Primary Dice｜Android アプリの企画・開発（マネログ・KAWASE・レートハント・ミエルーペ）</title>
-<meta name="description" content="Primary Dice は、Android アプリを企画から公開まで制作している個人事業です。家計簿アプリ「マネログ」、通貨換算アプリ「KAWASE」、アジア8都市の両替ガイド「レートハント」、拡大鏡アプリ「ミエルーペ」を開発しています。">
+<title>Primary Dice｜Android アプリの企画・開発（マネログ・KAWASE・レートハント・ミエルーペ・トリップキット）</title>
+<meta name="description" content="Primary Dice は、Android アプリを企画から公開まで制作している個人事業です。家計簿アプリ「マネログ」、通貨換算アプリ「KAWASE」、アジア8都市の両替ガイド「レートハント」、拡大鏡アプリ「ミエルーペ」、AIが海外旅行のスケジュールを作る「トリップキット」を開発しています。">
 <meta name="theme-color" content="#070b14">
 <link rel="canonical" href="https://primarydice.github.io/">
 
@@ -128,7 +128,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
              画面の幅が狭いときは、2文目がさらに折り返されます(それで正しい動きです)。 -->
         <p class="dim" style="max-width:30em;margin:0">
           Android アプリを、企画から公開まで制作しています。<br>
-          4つとも Google Play で公開しています。バッジを押すと、ストアのページが開きます。
+          5つとも Google Play で公開しています。バッジを押すと、ストアのページが開きます。
         </p>
 
         <!-- 行のどこを押しても詳細ページへ、バッジを押したときだけ Google Play へ飛びます。
@@ -172,6 +172,15 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
               <p class="row-desc">カメラをかざすだけの拡大鏡（ルーペ）。止めてゆっくり読める。</p>
             </div>
             <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.mielupe" rel="noopener"><img src="/assets/google-play-badge.svg" alt="ミエルーペを Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
+
+          <div class="row row--app">
+            <img class="row-icon" src="/assets/apps/tripkit/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <h3 class="row-name"><a class="row-link" href="/tripkit/">トリップキット</a></h3>
+              <p class="row-desc">行き先と日程をえらぶと、AIが海外旅行のスケジュールを作る。換算・翻訳・お金の記録も、これひとつで。</p>
+            </div>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.tripkit" rel="noopener"><img src="/assets/google-play-badge.svg" alt="トリップキットを Google Play で手に入れよう" width="180" height="53"></a>
           </div>
 
           <hr class="incise">
@@ -237,16 +246,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
 
         <div class="rows">
 
-          <!-- トリップキットは、まだ作っている途中です。
-               詳細ページを作れるだけの中身が無いので、リンクは張らずに
-               「開発中」の印だけを付けています。完成したら「製品」へ移し、他の4つと同じ形にします。 -->
-          <div class="row row--lab">
-            <div>
-              <h3 class="row-name">トリップキット</h3>
-              <p class="row-desc">電波が無くても使える、海外旅行の道具箱。換算・翻訳・予算をひとまとめに。</p>
-            </div>
-            <span class="stamp">開発中</span>
-          </div>
+          <!-- トリップキットは 2026-10-08 に Google Play で公開したので、「製品」へ移しました。 -->
 
           <div class="row row--lab">
             <div>
@@ -271,6 +271,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
       <h2 class="spec-label">記録</h2>
       <div class="spec-body">
         <ul class="log">
+          <li><time class="data" datetime="2026-10-08">2026.10.08</time><span>トリップキットを Google Play で公開しました。</span></li>
           <li><time class="data" datetime="2026-09-26">2026.09.26</time><span>マネログ・KAWASE・レートハントを 1.0.3 に、ミエルーペを 1.0.1 に更新しました。</span></li>
           <li><time class="data" datetime="2026-09-23">2026.09.23</time><span>「手引き」の欄を作り、海外での両替と家計簿についての記事を公開しました。</span></li>
           <li><time class="data" datetime="2026-09-19">2026.09.19</time><span>KAWASE・マネログ・レートハントで、絵文字と国旗が機種によらず同じ形で表示されるようにしました。</span></li>
