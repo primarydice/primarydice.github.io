@@ -827,6 +827,28 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   min-width: 94px;
 }
 
+/* 記録は新しい5件だけ見せ、それより前は「それより前の記録を見る」を押すと出ます。
+   すぐ下の <details class="log-more"> が閉じている間だけ、6件目から隠します。
+   (:has() が使えない古いブラウザでは、全部出たままになるだけで困りません) */
+.log:has(+ .log-more:not([open])) li:nth-child(n+6) { display: none; }
+.log-more summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 4px;
+  border-top: 1px solid var(--incise);
+  box-shadow: inset 0 1px 0 var(--lip);
+  font-size: 13px;
+  color: var(--steel-dim);
+}
+.log-more summary::-webkit-details-marker { display: none; }
+.log-more summary:hover { color: inherit; text-decoration: underline; }
+.log-more summary::after { content: " ▾"; }
+.log-more[open] summary::after { content: " ▴"; }
+.log-more .when-open, .log-more[open] .when-closed { display: none; }
+.log-more[open] .when-open { display: inline; }
+/* 記録が5件以下のときは、押す所ごと出さない */
+.log:not(:has(li:nth-child(6))) + .log-more { display: none; }
+
 /* -------------------------------------------------------------------------
    理念(経営理念)
 

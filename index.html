@@ -288,6 +288,8 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
           <li><time class="data" datetime="2026-08-18">2026.08.18</time><span>マネログの画面デザインを一新しました。</span></li>
           <li><time class="data" datetime="2026-08-09">2026.08.09</time><span>レートハントの開発を開始しました。</span></li>
         </ul>
+        <!-- 6件目より前は畳んでおき、押すと開きます(隠すのは style.css の .log-more。件数は決め打ちしていないので、記録が増えても書き換え不要) -->
+        <details class="log-more"><summary><span class="when-closed">それより前の記録を見る</span><span class="when-open">閉じる</span></summary></details>
         <hr class="incise">
       </div>
     </div>
