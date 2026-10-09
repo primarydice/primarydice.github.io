@@ -102,33 +102,39 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
     <div class="wrap spec reveal">
       <h2 class="spec-label">動画</h2>
       <div class="spec-body">
+        <!-- 2本あります(2026-10-09 にデコトラ篇を追加)。静止画は YouTube のサムネイルと同じ絵です -->
         <div class="yt" data-yt="oLlQUgDsrZE" data-title="トラック積み付けアプリ 積み荷｜積み方を3Dで見せる">
           <button type="button" class="yt-play" aria-label="動画「トラック積み付けアプリ 積み荷｜積み方を3Dで見せる」を再生する（YouTube から読み込みます）">
             <img src="/assets/apps/tsumini/video-thumb.jpg" alt="" width="1280" height="720" loading="lazy">
             <span class="yt-icon" aria-hidden="true"></span>
           </button>
         </div>
-        <p class="small dim" style="margin-top:12px">
-          再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。
-          <a href="https://youtu.be/oLlQUgDsrZE" rel="noopener">YouTube で見る</a>
-        </p>
+        <p class="small dim" style="margin-top:10px">歌舞伎篇（11秒）　<a href="https://youtu.be/oLlQUgDsrZE" rel="noopener">YouTube で見る</a></p>
+        <div class="yt" data-yt="WJWDmcXWk_A" data-title="トラック積み付けアプリ 積み荷｜荷物を入れるだけで、積み方を3Dで" style="margin-top:28px">
+          <button type="button" class="yt-play" aria-label="動画「トラック積み付けアプリ 積み荷｜荷物を入れるだけで、積み方を3Dで」を再生する（YouTube から読み込みます）">
+            <img src="/assets/apps/tsumini/video-thumb-dekotora.jpg" alt="" width="1280" height="720" loading="lazy">
+            <span class="yt-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <p class="small dim" style="margin-top:10px">デコトラ篇（12秒）　<a href="https://youtu.be/WJWDmcXWk_A" rel="noopener">YouTube で見る</a></p>
+        <p class="small dim" style="margin-top:18px">再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。</p>
       </div>
     </div>
   </section>
   <script>
     (function () {
-      var box = document.querySelector('.yt');
-      if (!box) { return; }
-      box.querySelector('.yt-play').addEventListener('click', function () {
-        var f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
-        f.title = box.getAttribute('data-title');
-        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-        f.allowFullscreen = true;
-        f.referrerPolicy = 'strict-origin-when-cross-origin';
-        box.innerHTML = '';
-        box.appendChild(f);
-        f.focus();
+      document.querySelectorAll('.yt').forEach(function (box) {
+        box.querySelector('.yt-play').addEventListener('click', function () {
+          var f = document.createElement('iframe');
+          f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
+          f.title = box.getAttribute('data-title');
+          f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+          f.allowFullscreen = true;
+          f.referrerPolicy = 'strict-origin-when-cross-origin';
+          box.innerHTML = '';
+          box.appendChild(f);
+          f.focus();
+        });
       });
     })();
   </script>
