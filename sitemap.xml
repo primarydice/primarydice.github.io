@@ -11,7 +11,7 @@
 
   <url>
     <loc>https://primarydice.github.io/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>1.0</priority>
   </url>
 
@@ -47,7 +47,7 @@
 
   <url>
     <loc>https://primarydice.github.io/tsumini/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -66,6 +66,12 @@
   <url>
     <loc>https://primarydice.github.io/guide/kakeibo-habit/</loc>
     <lastmod>2026-09-24</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/truck-loading-basics/</loc>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.6</priority>
   </url>
 
