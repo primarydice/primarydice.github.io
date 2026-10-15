@@ -53,13 +53,61 @@
 
   <url>
     <loc>https://primarydice.github.io/guide/airport-exchange/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://primarydice.github.io/guide/city-exchange/</loc>
     <lastmod>2026-10-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/seoul-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/busan-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/taipei-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/bangkok-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/hanoi-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/hochiminh-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/manila-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/cebu-exchange/</loc>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.6</priority>
   </url>
 
