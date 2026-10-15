@@ -290,6 +290,38 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
             <span class="stamp stamp--lab">試作</span>
           </div>
 
+          <!-- CRADLE の実況動画(YouTube)。アプリのページと同じ作りで、再生ボタンを押したときに初めて YouTube から読み込みます
+               (プライバシーポリシーの「動画」の節と対)。2本目を足すときは、下の script が .yt を1つしか見ていないので直すこと。 -->
+          <div style="max-width:560px;padding:0 4px 26px">
+            <div class="yt" data-yt="zZ37eKvHc6Q" data-title="AIで作ったゲームをAIでプレイさせてAIで実況させてみた【CRADLE 序章】">
+              <button type="button" class="yt-play" aria-label="動画「AIで作ったゲームをAIでプレイさせてAIで実況させてみた【CRADLE 序章】」を再生する（YouTube から読み込みます）">
+                <img src="/assets/apps/cradle/video-thumb.jpg" alt="" width="1280" height="720" loading="lazy">
+                <span class="yt-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+            <p class="small dim" style="margin-top:12px">
+              序章をAIに遊ばせて、AIの2人が実況した動画です。再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。
+              <a href="https://youtu.be/zZ37eKvHc6Q" rel="noopener">YouTube で見る</a>
+            </p>
+          </div>
+          <script>
+            (function () {
+              var box = document.querySelector('.yt');
+              if (!box) { return; }
+              box.querySelector('.yt-play').addEventListener('click', function () {
+                var f = document.createElement('iframe');
+                f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
+                f.title = box.getAttribute('data-title');
+                f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                f.allowFullscreen = true;
+                f.referrerPolicy = 'strict-origin-when-cross-origin';
+                box.innerHTML = '';
+                box.appendChild(f);
+                f.focus();
+              });
+            })();
+          </script>
+
           <hr class="incise">
         </div>
       </div>
@@ -307,6 +339,7 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
         <ul class="log">
           <li><time class="data" datetime="2026-10-08">2026.10.08</time><span>レートハントを 1.0.4 に更新しました。</span></li>
           <li><time class="data" datetime="2026-10-08">2026.10.08</time><span>トリップキットを Google Play で公開しました。</span></li>
+          <li><time class="data" datetime="2026-10-07">2026.10.07</time><span>ロールプレイングゲーム「CRADLE ―AIが愛した楽園―」の開発を開始しました。</span></li>
           <li><time class="data" datetime="2026-10-06">2026.10.06</time><span>積み荷（積載シミュレーション）を Google Play で公開しました。</span></li>
           <li><time class="data" datetime="2026-09-26">2026.09.26</time><span>マネログ・KAWASE・レートハントを 1.0.3 に、ミエルーペを 1.0.1 に更新しました。</span></li>
           <li><time class="data" datetime="2026-09-23">2026.09.23</time><span>「手引き」の欄を作り、海外での両替と家計簿についての記事を公開しました。</span></li>
