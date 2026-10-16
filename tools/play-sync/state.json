@@ -4,7 +4,7 @@
       "name": "マネログ",
       "slug": "manelog",
       "appId": "app.primarydice.manelog",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "shotsHash": "b42c320e3ad1",
       "ngWords": []
     },
@@ -12,7 +12,7 @@
       "name": "KAWASE",
       "slug": "kawase",
       "appId": "app.primarydice.kawase",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "shotsHash": "0312ab08e4c8",
       "ngWords": []
     },
@@ -20,7 +20,7 @@
       "name": "レートハント",
       "slug": "ratehunt",
       "appId": "app.primarydice.ratehunt",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "shotsHash": "979b91c7f1d7",
       "ngWords": [
         "最安の両替所が見つかる",
@@ -37,7 +37,7 @@
       "name": "ミエルーペ",
       "slug": "mielupe",
       "appId": "app.primarydice.mielupe",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "shotsHash": "a914a73f7156",
       "ngWords": [
         "視力が良くなる",
@@ -51,7 +51,7 @@
       "name": "トリップキット",
       "slug": "tripkit",
       "appId": "app.primarydice.tripkit",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "shotsHash": "867bed9a3838",
       "ngWords": [
         "必ず",
@@ -63,7 +63,7 @@
       "name": "積み荷",
       "slug": "tsumini",
       "appId": "app.primarydice.tsumini",
-      "version": "1.0",
+      "version": "1.0.1",
       "shotsHash": "72a6a656d394",
       "ngWords": [
         "必ず",
