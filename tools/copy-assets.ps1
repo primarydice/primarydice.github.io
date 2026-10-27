@@ -57,6 +57,13 @@ $apps = @(
         dir  = 'truck-loading-app\store-assets\screenshots'
         # 2026-10-08 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
         shots = @('スクショ1_積み付け.png','スクショ2_荷物.png','スクショ3_伝票.png','スクショ4_優先条件.png','スクショ5_荷台.png','スクショ6_ガチャ.png')
+    },
+    @{
+        name = 'sapanavi'
+        icon = 'sapanavi\store-assets\icon-512.png'
+        dir  = 'sapanavi\store-assets\screenshots'
+        # 2026-10-27 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
+        shots = @('スクショ1_一覧.png','スクショ2_GSの会社.png','スクショ3_ナビ.png','スクショ4_さがす.png','スクショ5_見せ方.png','スクショ6_音声案内.png')
     }
 )
 

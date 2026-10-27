@@ -11,7 +11,7 @@
 
   <url>
     <loc>https://primarydice.github.io/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <priority>1.0</priority>
   </url>
 
@@ -48,6 +48,12 @@
   <url>
     <loc>https://primarydice.github.io/tsumini/</loc>
     <lastmod>2026-10-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/sapanavi/</loc>
+    <lastmod>2026-10-27</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -125,7 +131,7 @@
 
   <url>
     <loc>https://primarydice.github.io/privacy/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <priority>0.3</priority>
   </url>
 

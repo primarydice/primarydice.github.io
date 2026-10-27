@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SA・PAナビ｜高速道路のSA・PAのお店とガソリンスタンドがわかるアプリ | Primary Dice</title>
+<meta name="description" content="SA・PAナビは、乗るICと降りるICを選ぶと、あいだのサービスエリア・パーキングエリアのお店とガソリンスタンド（会社と営業時間）が走る順にわかる Android アプリです。ナビ中は次のSA・PAと次のガソリンスタンドまでの距離を出し、指定したSA・PAなどの2km手前で声で知らせます。">
+<meta name="theme-color" content="#070b14">
+<link rel="canonical" href="https://primarydice.github.io/sapanavi/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Primary Dice">
+<meta property="og:title" content="SA・PAナビ｜次のSA・PAに何があるか、すぐわかる">
+<meta property="og:description" content="乗るICと降りるICを選ぶだけで、あいだのSA・PAのお店とガソリンスタンドが走る順に並びます。">
+<meta property="og:url" content="https://primarydice.github.io/sapanavi/">
+<meta property="og:image" content="https://primarydice.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+
+<script>
+if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.className += ' js-reveal';
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SA・PAナビ",
+  "operatingSystem": "Android",
+  "applicationCategory": "TravelApplication",
+  "url": "https://primarydice.github.io/sapanavi/",
+  "installUrl": "https://play.google.com/store/apps/details?id=app.primarydice.sapanavi",
+  "softwareVersion": "1.0",
+  "dateModified": "2026-10-27",
+  "description": "乗るICと降りるICを選ぶと、あいだのサービスエリア・パーキングエリアのお店とガソリンスタンドが走る順にわかる高速道路のアプリ。ナビ中は次のSA・PAと次のガソリンスタンドまでの距離を表示する。",
+  "author": { "@type": "Organization", "name": "Primary Dice" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="home" href="/"><img src="/assets/logo.png" alt="Primary Dice" width="879" height="200"></a>
+    <nav class="site-nav" aria-label="サイト内">
+      <a href="/#products">Products</a>
+      <a href="/#labs">Labs</a>
+      <a href="/#company">Company</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <div class="app-head">
+        <img src="/assets/apps/sapanavi/icon.png" alt="" width="192" height="192">
+        <h1 class="polish">SA・PAナビ</h1>
+      </div>
+      <p class="hero-note" style="margin-top:12px">
+        高速道路で「次のガソリンスタンドはどこ？」「次のサービスエリアに何がある？」と思ったときに。<br>
+        乗るICと降りるICを選ぶだけで、あいだのSA・PAのお店とガソリンスタンドが、走る順に並びます。
+      </p>
+      <p style="margin-top:26px"><a class="gp-badge gp-badge--lg" href="https://play.google.com/store/apps/details?id=app.primarydice.sapanavi" rel="noopener"><img src="/assets/google-play-badge.svg" alt="Google Play で手に入れよう" width="180" height="53"></a></p>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="shots">
+        <!-- ストアに載せている1枚絵です(スマホの枠が絵に描き込まれているので .card を使う)。
+             画像は tools/copy-assets.ps1 と同じ決まりで作っています(PNG が 300KB を超えた1枚目だけ JPEG) -->
+        <div class="card"><img src="/assets/apps/sapanavi/shot-01.jpg" alt="「次のSA・PAに何がある？」の見出しと、東京ICから名古屋ICまでのSA・PAがお店とガソリンスタンドつきで並んだ一覧の画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/sapanavi/shot-02.png" alt="「GSの営業会社まで分かる」の見出しと、SAのガソリンスタンドの看板と営業している会社を出した画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/sapanavi/shot-03.png" alt="「次のSA・PAまであと何km」の見出しと、ナビ中に次のSAとガソリンスタンドまでの距離を出している画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/sapanavi/shot-04.png" alt="「店・GSでさがす」の見出しと、お店の名前やガソリンスタンドの会社でSA・PAをさがした画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/sapanavi/shot-05.png" alt="「見せ方は3つ」の見出しと、SA・PAの名前だけを1行ずつ並べた画面" width="540" height="960" loading="lazy"></div>
+        <div class="card"><img src="/assets/apps/sapanavi/shot-06.png" alt="「2km手前で声でお知らせ」の見出しと、音声案内の設定の画面" width="540" height="960" loading="lazy"></div>
+      </div>
+      <p class="small dim" style="margin-top:12px">横にスワイプすると、ほかの画面も見られます</p>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <!-- ===== 紹介動画(YouTube) =====
+       ミエルーペ・積み荷のページと同じ作り(2026-10-27 追加)。最初は手元に置いた静止画(YouTube のサムネイルと同じ絵)だけを表示し、
+       再生ボタンを押したときに初めて YouTube の動画を読み込みます(プライバシーポリシーの「動画」の節と対)。
+       読み込み先は、Cookie を控えめにする YouTube の「プライバシー強化モード」(youtube-nocookie.com)です。
+       JavaScript が動かない環境では、下の「YouTube で見る」から見られます。 -->
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">動画</h2>
+      <div class="spec-body">
+        <div class="yt" data-yt="yEhqoV8JFWQ" data-title="高速道路アプリ SA・PAナビ｜次のガソリンスタンドと、SA・PAの店がすぐわかる">
+          <button type="button" class="yt-play" aria-label="動画「高速道路アプリ SA・PAナビ｜次のガソリンスタンドと、SA・PAの店がすぐわかる」を再生する（YouTube から読み込みます）">
+            <img src="/assets/apps/sapanavi/video-thumb.jpg" alt="" width="1280" height="720" loading="lazy">
+            <span class="yt-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <p class="small dim" style="margin-top:12px">
+          再生ボタンを押すと、YouTube から動画を読み込みます。押すまで YouTube には接続しません。
+          <a href="https://youtu.be/yEhqoV8JFWQ" rel="noopener">YouTube で見る</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var box = document.querySelector('.yt');
+      if (!box) { return; }
+      box.querySelector('.yt-play').addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0';
+        f.title = box.getAttribute('data-title');
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        box.innerHTML = '';
+        box.appendChild(f);
+        f.focus();
+      });
+    })();
+  </script>
+
+  <hr class="incise">
+
+  <!-- ===== ポイント =====
+       機能は上の画面写真で伝わるので、ここには写真からは分からないことだけを1行ずつ書く。 -->
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">ポイント</h2>
+      <div class="spec-body">
+        <ul class="list" style="max-width:38em">
+          <li>お店とガソリンスタンドは、主に高速道路会社とガソリンスタンドの会社の公式サイトに載っている事実（名前・営業時間・会社）をまとめたものです。施設ごとに出典と調べた日を出しています。</li>
+          <li>ルートの計算はスマホの中で行います。いまの場所はスマホの外に送りません。</li>
+          <li>登録は要りません。無料です（広告が出ます）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">質問</h2>
+      <div class="spec-body">
+        <div class="faq" style="max-width:40em;margin-top:0">
+          <div>
+            <h3>どこの高速道路で使えますか</h3>
+            <p>全国の SA・PA 約980か所の場所がわかり、そのうち約850か所はお店やガソリンスタンドの情報つきです。都市高速の PA などは、情報がまだ少ないところがあります。</p>
+          </div>
+          <div>
+            <h3>渋滞や通行止めはわかりますか</h3>
+            <p>アプリの中には出ません。ルートの画面から、各道路会社の公式の交通情報のページを開いて確かめられます。</p>
+          </div>
+          <div>
+            <h3>運転しながら使えますか</h3>
+            <p>運転中は操作しないでください。指定した SA・PA・JCT・降りる IC の2km手前で声で知らせるので、画面は止まってから見てください。</p>
+          </div>
+          <div>
+            <h3>広告は表示されますか</h3>
+            <p>表示されます（画面の上）。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="incise">
+
+  <section class="section">
+    <div class="wrap spec reveal">
+      <h2 class="spec-label">公開状況</h2>
+      <div class="spec-body">
+        <div class="note">
+          <p class="small">SA・PAナビは Google Play で公開しています。下のバッジを押すと、ストアのページが開きます。</p>
+        </div>
+        <!-- play-sync:start  ここから下は tools/play-sync が自動で書き換えます。手で直すと次の更新で消えます -->
+        <div class="note" style="margin-top:18px">
+          <p class="small">最新版：<span class="data">1.0</span>（2026.10.27 公開）</p>
+          <p class="small">・SA・PAナビを公開しました。</p>
+        </div>
+        <!-- play-sync:end -->
+        <p style="margin-top:18px"><a class="gp-badge gp-badge--lg" href="https://play.google.com/store/apps/details?id=app.primarydice.sapanavi" rel="noopener"><img src="/assets/google-play-badge.svg" alt="Google Play で手に入れよう" width="180" height="53"></a></p>
+        <p class="tm">Google Play および Google Play ロゴは Google LLC の商標です。</p>
+        <p class="small" style="margin-top:12px"><a class="link-block" href="https://primarydice.github.io/privacy-policies/sapanavi.html">SA・PAナビのプライバシーポリシー</a></p>
+        <p style="margin-top:34px"><a class="btn" href="/#products">ほかの製品を見る</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="copy">© 2026 Primary Dice</span>
+    <span><a href="/privacy/">プライバシーポリシー</a></span>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

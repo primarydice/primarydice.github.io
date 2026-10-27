@@ -71,6 +71,19 @@
         "荷崩れしない",
         "安全に積める"
       ]
+    },
+    {
+      "name": "SA・PAナビ",
+      "slug": "sapanavi",
+      "appId": "app.primarydice.sapanavi",
+      "version": "1.0",
+      "shotsHash": "",
+      "ngWords": [
+        "リアルタイム",
+        "渋滞情報",
+        "必ず",
+        "最安"
+      ]
     }
   ]
 }
