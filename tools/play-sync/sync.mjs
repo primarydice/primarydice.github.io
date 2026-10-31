@@ -10,8 +10,6 @@
 //
 // 書き換えるところ
 //   - トップの「記録」に「◯◯を 1.0.3 に更新しました。」を1行足す
-//   - アプリのページの <!-- play-sync:start --> 〜 <!-- play-sync:end --> の間
-//     (最新版の番号・更新日・この版で変わったこと)
 //   - アプリのページの説明データ(JSON-LD)の softwareVersion / dateModified
 //   - sitemap.xml の lastmod(トップとそのアプリのページ)
 // ストアの画像が変わったときは、サイトの画像は自動では替えず、プルリクエストに書いて知らせます
@@ -91,25 +89,9 @@ for (const app of state.apps) {
   // 1) トップの「記録」は、全部のアプリを見終わってから1行にまとめて足す(下の方)
   updated.push({ name: app.name, version: info.version, date });
 
-  // 2) アプリのページの「最新版」の欄
+  // 2) アプリのページに最新版の欄は置かない(2026-10-31 ユーザー指示)。説明データだけ直す
   const pagePath = `${app.slug}/index.html`;
   let page = read(pagePath);
-  const block = [
-    '<!-- play-sync:start  ここから下は tools/play-sync が自動で書き換えます。手で直すと次の更新で消えます -->',
-    '        <div class="note" style="margin-top:18px">',
-    `          <p class="small">最新版：<span class="data">${esc(info.version)}</span>（${dot} 更新）</p>`,
-    ...notes.map((n) => `          <p class="small">・${esc(n)}</p>`),
-    '        </div>',
-    '        <!-- play-sync:end -->',
-  ].join('\n');
-  if (page.includes('<!-- play-sync:start')) {
-    page = page.replace(/<!-- play-sync:start[\s\S]*?<!-- play-sync:end -->/, block);
-  } else {
-    // 初回: 「Google Play で公開しています」の枠のすぐ下に入れる
-    const re = /(<p class="small">[^<]*Google Play で公開しています。[^<]*<\/p>\r?\n\s*<\/div>\r?\n)/;
-    if (!re.test(page)) { warnings.push(`${app.name}: ページに「Google Play で公開しています」の枠が見つからず、最新版の欄を入れられませんでした。`); }
-    page = page.replace(re, `$1        ${block}\n`);
-  }
 
   // 3) 説明データ(検索エンジン向け)に版と更新日
   page = page.replace(/(\n\s*)"softwareVersion": "[^"]*",\n\s*"dateModified": "[^"]*",/, '');
