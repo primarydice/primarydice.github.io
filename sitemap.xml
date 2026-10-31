@@ -11,7 +11,7 @@
 
   <url>
     <loc>https://primarydice.github.io/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>1.0</priority>
   </url>
 
@@ -23,7 +23,7 @@
 
   <url>
     <loc>https://primarydice.github.io/kawase/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -41,7 +41,7 @@
 
   <url>
     <loc>https://primarydice.github.io/tripkit/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -53,7 +53,7 @@
 
   <url>
     <loc>https://primarydice.github.io/sapanavi/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -126,6 +126,24 @@
   <url>
     <loc>https://primarydice.github.io/guide/truck-loading-basics/</loc>
     <lastmod>2026-10-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/highway-gas-rest/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/overseas-trip-prep/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://primarydice.github.io/guide/exchange-rate-basics/</loc>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
