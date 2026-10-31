@@ -1,4 +1,4 @@
-# 1日1回、Google Play に各アプリの新しい版が出ていないかを見に行き、
+# 週1回(月曜)、Google Play に各アプリの新しい版が出ていないかを見に行き、
 # 出ていたら会社サイトを書き換えた「プルリクエスト(変更の下書き)」を作ります。
 # 本番に出るのは、持ち主が中身を見て [Merge] を押したときだけです。
 # 中身は tools/play-sync/sync.mjs を見てください。
@@ -6,7 +6,7 @@ name: Google Play の更新をサイトに反映
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 毎日 9:00(日本時間)
+    - cron: '0 0 * * 1'   # 毎週月曜 9:00(日本時間)
   workflow_dispatch:       # Actions の画面から手で動かすこともできる
 
 permissions:

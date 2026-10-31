@@ -1,7 +1,7 @@
 // Google Play に出ている各アプリの「最新の版」を読みに行き、
 // 新しい版が出ていたら会社サイトを書き換えるスクリプトです。
 //
-// 動かすのは GitHub Actions(.github/workflows/play-sync.yml)で、1日1回。
+// 動かすのは GitHub Actions(.github/workflows/play-sync.yml)で、週1回(月曜)。
 // 書き換えた内容はすぐ本番には出さず、「プルリクエスト(変更の下書き)」にして
 // 持ち主が中身を見て [Merge] を押したときに本番へ出ます。
 //
@@ -65,7 +65,7 @@ for (const app of state.apps) {
   try {
     info = await gplay.app({ appId: app.appId, lang: 'ja', country: 'jp' });
   } catch (e) {
-    warnings.push(`${app.name}: Google Play のページを読めませんでした(${e.message})。次の日にもう一度試します。`);
+    warnings.push(`${app.name}: Google Play のページを読めませんでした(${e.message})。次の回にもう一度試します。`);
     continue;
   }
 
