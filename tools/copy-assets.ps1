@@ -64,6 +64,13 @@ $apps = @(
         dir  = 'sapanavi\store-assets\screenshots'
         # 2026-10-27 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
         shots = @('スクショ1_一覧.png','スクショ2_GSの会社.png','スクショ3_ナビ.png','スクショ4_さがす.png','スクショ5_見せ方.png','スクショ6_音声案内.png')
+    },
+    @{
+        name = 'cliff'
+        icon = 'cliff\素材\playstore-icon-512.png'
+        dir  = 'cliff\store-assets\screenshots'
+        # 2026-11-03 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
+        shots = @('スクショ1_タイトル.png','スクショ2_登る.png','スクショ3_張り出し.png','スクショ4_持ち物.png','スクショ5_ロープ.png','スクショ6_頂上.png')
     }
 )
 

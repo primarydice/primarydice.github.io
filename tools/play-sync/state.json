@@ -84,6 +84,19 @@
         "必ず",
         "最安"
       ]
+    },
+    {
+      "name": "CLIFF 断崖絶壁",
+      "slug": "cliff",
+      "appId": "app.primarydice.cliff",
+      "version": "1.0",
+      "shotsHash": "a22a013d194d",
+      "ngWords": [
+        "必ず",
+        "筋トレ",
+        "トレーニング効果",
+        "本物のクライミング"
+      ]
     }
   ]
 }

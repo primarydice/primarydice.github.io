@@ -643,7 +643,7 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   .row--noicon > .stamp { grid-column: 2; justify-self: start; }
 }
 
-/* 手引き(読みもの)の行。アイコンが無いので2列。右端の「読む」は a.row:hover で色が変わる */
+/* 記事(読みもの)の行。アイコンが無いので2列。右端の「読む」は a.row:hover で色が変わる */
 .row--guide { grid-template-columns: 1fr auto; padding: 22px 4px; }
 .row--guide .row-name { font-size: 17px; }
 @media (max-width: 620px) {
@@ -914,10 +914,10 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
 }
 .features h3 { font-size: 17px; letter-spacing: 0.08em; margin-bottom: 8px; }
 .features p { font-size: 15px; line-height: 1.85; color: var(--steel-dim); margin: 0; }
-/* 手引き(読みもの)では左右に並べず、上から順に読ませる */
+/* 記事(読みもの)では左右に並べず、上から順に読ませる */
 .features--stack { grid-template-columns: 1fr; max-width: 38em; }
 
-/* 手引きの記事の合間に入れる写真と図。
+/* 記事の合間に入れる写真と図。
    写真は Unsplash の無料ライセンス(撮影者名の表示は不要)のものを assets/guide/ に置いています。
    図は SVG で直接書いているので、色はこの下の --fig-* で変えられます。 */
 .guide-fig { margin: 0; max-width: 38em; }
