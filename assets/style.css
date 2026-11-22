@@ -679,6 +679,11 @@ a.row:hover .row-go, a.row:focus-visible .row-go { color: var(--accent); }
   white-space: nowrap;
 }
 .stamp--lab { border-style: dashed; }
+/* おすすめの行(トップの製品一覧のいちばん上)。面は塗らず、行の左の外に差し色の線を1本入れて目印にする
+   (線を行の内側に入れると、アイコンの左端がほかの行とそろわなくなる) */
+.row--pick::before { content: ""; position: absolute; left: -12px; top: 18px; bottom: 18px; width: 3px; background: var(--accent); }
+.row--pick .row-name { margin-top: 8px; }
+.stamp--pick { padding: 3px 10px; font-size: 11px; }
 
 /* -------------------------------------------------------------------------
    ボタン

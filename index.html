@@ -150,6 +150,18 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
              バッジの画像は Google 公式のもの(assets/google-play-badge.svg)を、手を加えずに使っています。 -->
         <div class="rows">
 
+          <!-- おすすめのアプリ(2026-11-23 ユーザー指示で SA・PAナビ)。ほかと同じ行の作りに .row--pick と「おすすめ」の印を足しただけ。
+               替えるときは、この行ごと元の並びの位置に戻し、新しいアプリの行をここへ移す -->
+          <div class="row row--app row--pick">
+            <img class="row-icon" src="/assets/apps/sapanavi/icon.png" alt="" width="192" height="192" loading="lazy">
+            <div>
+              <span class="stamp stamp--pick">おすすめ</span>
+              <h3 class="row-name"><a class="row-link" href="/sapanavi/">SA・PAナビ</a></h3>
+              <p class="row-desc">乗るICと降りるICを選ぶと、あいだのSA・PAのお店とガソリンスタンドが走る順に並ぶ。ナビ中は次のガソリンスタンドまでの距離も。</p>
+            </div>
+            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.sapanavi" rel="noopener"><img src="/assets/google-play-badge.svg" alt="SA・PAナビを Google Play で手に入れよう" width="180" height="53"></a>
+          </div>
+
           <div class="row row--app">
             <img class="row-icon" src="/assets/apps/manelog/icon.png" alt="" width="192" height="192" loading="lazy">
             <div>
@@ -202,15 +214,6 @@ if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').
               <p class="row-desc">荷台と荷物の大きさ・重さを入れると、トラックの積み方の案を3Dで見せる。伝票の読み取りと、デコトラのガチャつき。</p>
             </div>
             <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.tsumini" rel="noopener"><img src="/assets/google-play-badge.svg" alt="積み荷を Google Play で手に入れよう" width="180" height="53"></a>
-          </div>
-
-          <div class="row row--app">
-            <img class="row-icon" src="/assets/apps/sapanavi/icon.png" alt="" width="192" height="192" loading="lazy">
-            <div>
-              <h3 class="row-name"><a class="row-link" href="/sapanavi/">SA・PAナビ</a></h3>
-              <p class="row-desc">乗るICと降りるICを選ぶと、あいだのSA・PAのお店とガソリンスタンドが走る順に並ぶ。ナビ中は次のガソリンスタンドまでの距離も。</p>
-            </div>
-            <a class="gp-badge" href="https://play.google.com/store/apps/details?id=app.primarydice.sapanavi" rel="noopener"><img src="/assets/google-play-badge.svg" alt="SA・PAナビを Google Play で手に入れよう" width="180" height="53"></a>
           </div>
 
           <div class="row row--app">
