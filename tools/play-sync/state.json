@@ -51,7 +51,7 @@
       "name": "トリップキット",
       "slug": "tripkit",
       "appId": "app.primarydice.tripkit",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "shotsHash": "867bed9a3838",
       "ngWords": [
         "必ず",
@@ -76,7 +76,7 @@
       "name": "SA・PAナビ",
       "slug": "sapanavi",
       "appId": "app.primarydice.sapanavi",
-      "version": "1.0.3",
+      "version": "1.0.9",
       "shotsHash": "55704f6131b6",
       "ngWords": [
         "リアルタイム",
