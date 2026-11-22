@@ -1,11 +1,15 @@
 ﻿# 各アプリのアイコンとスクリーンショットを、サイト用に縮小してコピーするスクリプト
 #
 # 使い方: powershell -ExecutionPolicy Bypass -File tools\copy-assets.ps1
+#   1つのアプリだけ作り直すとき: ... -File tools\copy-assets.ps1 -Only toku
+#   (全部を作り直すと、元の画像が新しくなったほかのアプリまで替わるので、ふつうは -Only を使う)
 #
 # 元の画像は Google Play 提出用なので大きすぎます(1080×2340 など)。
 # そのままサイトに置くと表示が遅くなるので、横幅540ピクセルに縮めます。
 # 画面上では約270ピクセルで表示するので、高精細画面(Retina など)でも
 # ぼやけない大きさです。何度実行しても同じ結果になります。
+
+param([string]$Only = '')
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
@@ -71,6 +75,13 @@ $apps = @(
         dir  = 'cliff\store-assets\screenshots'
         # 2026-11-03 追加。ストアの1枚絵(スマホの枠が描き込み済み)なので、サイトでは .card で並べます
         shots = @('スクショ1_タイトル.png','スクショ2_登る.png','スクショ3_張り出し.png','スクショ4_持ち物.png','スクショ5_ロープ.png','スクショ6_頂上.png')
+    },
+    @{
+        name = 'toku'
+        icon = 'toku\ストア素材\icon-512.png'
+        dir  = 'toku\ストア素材\screenshots'
+        # 2026-11-23 追加。枠のない本物の画面なので、サイトでは .phone で並べます
+        shots = @('1_ひく前.png','2_金の演出.png','3_今日の言葉.png','4_虹色の演出.png','5_これまでの言葉.png')
     }
 )
 
@@ -110,6 +121,7 @@ function Save-Resized {
 }
 
 foreach ($app in $apps) {
+    if ($Only -and $app.name -ne $Only) { continue }
     $dst = Join-Path $dstRoot $app.name
     if (-not (Test-Path $dst)) { New-Item -ItemType Directory -Path $dst -Force | Out-Null }
 
