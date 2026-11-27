@@ -82,6 +82,13 @@ $apps = @(
         dir  = 'toku\ストア素材\screenshots'
         # 2026-11-23 追加。枠のない本物の画面なので、サイトでは .phone で並べます
         shots = @('1_ひく前.png','2_金の演出.png','3_今日の言葉.png','4_虹色の演出.png','5_これまでの言葉.png')
+    },
+    @{
+        name = 'butsudan'
+        icon = 'butsudan\ストア素材\icon-512.png'
+        dir  = 'butsudan\ストア素材\screenshots'
+        # 2026-11-28 追加。ストアの1枚絵(スマホの枠と言葉が描き込み済み)なので、サイトでは .card で並べます
+        shots = @('1.png','2.png','3.png','4.png')
     }
 )
 

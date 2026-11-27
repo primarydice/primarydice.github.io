@@ -110,6 +110,19 @@
         "ご利益",
         "人生が変わる"
       ]
+    },
+    {
+      "name": "仏壇",
+      "slug": "butsudan",
+      "appId": "app.primarydice.butsudan",
+      "version": "1.0",
+      "ngWords": [
+        "ご利益",
+        "功徳",
+        "成仏",
+        "供養になる",
+        "願いが叶う"
+      ]
     }
   ]
 }
