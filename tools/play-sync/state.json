@@ -12,7 +12,7 @@
       "name": "KAWASE",
       "slug": "kawase",
       "appId": "app.primarydice.kawase",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "shotsHash": "0312ab08e4c8",
       "ngWords": []
     },
@@ -51,7 +51,7 @@
       "name": "トリップキット",
       "slug": "tripkit",
       "appId": "app.primarydice.tripkit",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "shotsHash": "867bed9a3838",
       "ngWords": [
         "必ず",
@@ -109,7 +109,8 @@
         "開運",
         "ご利益",
         "人生が変わる"
-      ]
+      ],
+      "shotsHash": "e9d6fb719339"
     },
     {
       "name": "仏壇",
@@ -122,7 +123,8 @@
         "成仏",
         "供養になる",
         "願いが叶う"
-      ]
+      ],
+      "shotsHash": "71005ed065e0"
     }
   ]
 }
